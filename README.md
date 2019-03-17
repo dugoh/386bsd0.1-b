@@ -9,7 +9,9 @@ For hints on how to build qemu 0.11 on a modern system see https://github.com/du
 All artifacts are pushed to https://dugoh.github.io/386bsd0.1-b/. The disk is bzip2 compressed and then split into 50MB parts. Grabbing the disk is simple.
 
 ```
-for i in a b c; do wget -O - https://dugoh.github.io/386bsd0.1/qdisk.part-a${i}; done|bunzip2 >qdisk.img
+for i in a b c; do \
+  wget -O - https://dugoh.github.io/386bsd0.1-b/qdisk.part-a${i};\
+done|bunzip2 >qdisk.img
 ```
 
 386BSD with the first patchkit should run in quemu with:
@@ -25,7 +27,8 @@ qemu -L /usr/local/share/qemu/ \
      -startdate "1994-04-22"'
 ```
 
-The second patchkit is already on the filesystem and you can pick up the guide at http://gunkies.org/wiki/Installing_386BSD_on_BOCHS#Sixth_boot.2C_patched_and_recompiled_system.
+The second patchkit is already on the filesystem and you can pick up the guide at [Sixth_boot, patched and recompiled system](http://gunkies.org/wiki/Installing_386BSD_on_BOCHS#Sixth_boot.2C_patched_and_recompiled_system).
+
 
 # Warning
 
@@ -33,4 +36,8 @@ This is being maintained with github and travis-ci as the IDE, I don't do branch
 
 # Current build status
 
+-    Part I    
 [![Build Status](https://travis-ci.org/dugoh/386bsd0.1.svg?branch=master)](https://travis-ci.org/dugoh/386bsd0.1)
+
+-    Part II   
+[![Build Status](https://travis-ci.org/dugoh/386bsd0.1-b.svg?branch=master)](https://travis-ci.org/dugoh/386bsd0.1-b)
