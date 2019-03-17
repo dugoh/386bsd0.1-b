@@ -1,0 +1,29 @@
+config_interface: textconfig
+display_library: term
+romimage: file=$BXSHARE/BIOS-bochs-legacy
+cpu: count=1, ips=80000000, reset_on_triple_fault=0
+megs: 8
+vgaromimage: file=$BXSHARE/VGABIOS-lgpl-latest
+vga: extension=none
+floppya: 1_44=boot.img, status=inserted
+ata0: enabled=1, ioaddr1=0x1f0, ioaddr2=0x3f0, irq=14
+ata0-master: type=disk, path="disk.img", mode=flat, cylinders=1024, heads=16, spt=63, translation=none, model=generic
+#ata0-master: type=disk, path="disk.img", mode=flat, translation=lba, model=generic
+boot: disk, floppy
+floppy_bootsig_check: disabled=0
+log: bochsout.txt
+panic: action=ask
+error: action=ignore
+info: action=ignore
+debug: action=ignore
+#vga_update_interval: 400000
+#keyboard_serial_delay: 250
+#keyboard_paste_delay: 2991000
+mouse: enabled=0
+private_colormap: enabled=0
+#keyboard_mapping: enabled=0, map=
+#i440fxsupport: enabled=0
+ne2k: ioaddr=0x300, irq=9, mac=fe:fd:00:00:00:01, ethmod=tuntap, ethdev=/dev/net/tun, script=./tunconfig
+com1: enabled=0
+#com1: enabled=1, mode=file, dev=serial.out
+clock: time0=735335193

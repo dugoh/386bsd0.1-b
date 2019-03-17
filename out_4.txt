@@ -1,0 +1,919 @@
+========================================================================
+                     Bochs x86 Emulator 2.6.9.svn
+              Built from SVN snapshot after release 2.6.9
+                  Compiled on Mar 17 2019 at 10:36:24
+========================================================================
+(B)0[1;24r[m[?7h[?1h=[H[J[H[JPress F12 for boot menu.
+
+Booting from Hard Disk...
+[0;1m386BSD Release 0.1 by William and Lynne Jolitz.[m [0.1.24  07/14/92 19:07]
+Copyright (c) 1989,1990,1991,1992 William F. Jolitz. All rights reserved.
+Based in part on work by the 386BSD User Community and the
+BSD Networking Software, Release 2 by UCB EECS Department.
+pc0<color> at 0x60 irq 1 on isa
+wd0 <generic> at 0x1f0 irq 14 on isa
+fd0 drives 0: 1.44M at 0x3f0 irq 6 drq 2 on isa
+ne0 ethernet address fe:fd:00:00:00:01 at 0x300 irq 9 on isa
+npx0 at 0xf0 irq 13 on isa
+[0;1mAutomatic reboot in progress...
+/dev/rwd0a: 13191 files, 180963 used, 312684 free (708 frags, 38997 blocks, 0.1%[15;1H fragmentation)[K
+starting network[K
+starting system logger.[K
+checking for core dump...[K
+preserving editor files[K
+clearing /tmp[K
+standard daemons: update crond.[K
+starting network daemons: routed printer sendmail inetd.                        [23;1Hstarting local daemons:.[K
+Mon Apr 19 18:48:11 PDT 1993[K[51C[m
+
+
+[2A[0;1m[K
+[3C[m386BSD (odin) (console)
+[53C
+
+
+
+
+
+
+
+
+[8Alogin: root
+
+ex386BSD Release 0.1 by William and Lynne Jolitz.
+Copyright (c) 1989,1990,1991,1992 William F. Jolitz. All rights reserved.
+Based in part on work by the 386BSD User Community and the
+BSD Networking Software, Release 2 by UCB EECS Department.
+386BSD 0.1.24  07/14/92 19:07
+
+Don't login as root, use su
+odin # odin # ec sh[24;28H
+ca# t >/to_pk023.sh <<"__EOF"
+> #!/bin/sh[24;30H
+> cd /[5C
+> tar -xvf pk023.tar
+> mv patch dist[5C
+> cd dist/bin  
+> ./mkpatchdirs
+> (echo y; echo; echo; echo IALL; echo y ; echo ; echo q)|./patches
+> ./afterinstall.sh[24;68H
+> rm -r /sys/compile/*
+> cd /sys/i386/conf   
+> config GENERICISA
+> cd /sys/compile/GENERICISA
+> make depend[24;29H
+> make[7C
+> mv /386bsd /386bsd.old
+> cp 386bsd /386bsd[5C
+> sync; sync; sync 
+> shutdown -rf now
+> __EOF[24;19H
+ch# mod +x /to_pk023.sh[10A[J[H-------------------------------------------------------------------------------
+[ Patches v0.2.3-B1        [2;41HCopyright (c) 1992,1993 Terry Lambert ]
+-------------------------------------------------------------------------------
+[K
+[K
+[K
+Scanning for new patches... please wait
+[K
+There are new patches available.  Unpack them? ([y]/n)
+Unpacking new patches.  Please wait
+[K
+Moving: patch00138.tar.z
+Unziping: patch00085.tar.z[24;24H[13;18H138
+
+Dearchiving: patch00054.tar[15;22H788[15;22H959[15;21H1039[15;22H149[15;47H[15;22H249[15;22H34[H[J[14B[Hpatch00006[6Cpatch00034[6Cpatch00062[6Cpatch00090[6Cpatch00118
+patch00007[6Cpatch00035[6Cpatch00063[6Cpatch00091[6Cpatch00119
+patch00008[6Cpatch00036[6Cpatch00064[6Cpatch00092[6Cpatch00120
+patch00009[6Cpatch00037[6Cpatch00065[6Cpatch00093[6Cpatch00121
+patch00010[6Cpatch00038[6Cpatch00066[6Cpatch00094[6Cpatch00122
+patch00011[6Cpatch00039[6Cpatch00067[6Cpatch00095[6Cpatch00123
+patch00012[6Cpatch00040[6Cpatch00068[6Cpatch00096[6Cpatch00124
+patch00013[6Cpatch00041[6Cpatch00069[6Cpatch00097[6Cpatch00125
+patch00014[6Cpatch00042[6Cpatch00070[6Cpatch00098[6Cpatch00126
+patch00015[6Cpatch00043[6Cpatch00071[6Cpatch00099[6Cpatch00127
+patch00016[6Cpatch00044[6Cpatch00072[6Cpatch00100[6Cpatch00128
+patch00017[6Cpatch00045[6Cpatch00073[6Cpatch00101[6Cpatch00129
+patch00018[6Cpatch00046[6Cpatch00074[6Cpatch00102[6Cpatch00130
+patch00019[6Cpatch00047[6Cpatch00075[6Cpatch00103[6Cpatch00131
+patch00020[6Cpatch00048[6Cpatch00076[6Cpatch00104[6Cpatch00132
+patch00021[6Cpatch00049[6Cpatch00077[6Cpatch00105[6Cpatch00133
+patch00022[6Cpatch00050[6Cpatch00078[6Cpatch00106[6Cpatch00134
+patch00023[6Cpatch00051[6Cpatch00079[6Cpatch00107[6Cpatch00135
+patch00024[6Cpatch00052[6Cpatch00080[6Cpatch00108[6Cpatch00136
+patch00025[6Cpatch00053[6Cpatch00081[6Cpatch00109[6Cpatch00137
+patch00026[6Cpatch00054[6Cpatch00082[6Cpatch00110[6Cpatch00138
+patch00027[6Cpatch00055[6Cpatch00083[6Cpatch00111
+patch00028[6Cpatch00056[6Cpatch00084[6Cpatch00112
+-------------------------------------------------------------------------------[20A[J[H-------------------------------------------------------------------------------
+[ Patches v0.2.3-B1       [6C        Copyright (c) 1992,1993 Terry Lambert ]
+-------------------------------------------------------------------------------[21B[17AVerifying prerequisite patches for patch00001 ...please wait
+All prerequisite patches found.
+
+THIS IS YOUR LAST CHANCE!  CONTINUE INSTALLING patch00001?[2A[J[1AINSTALLATION OF patch00001 IN PROGRESS.  DO NOT INTERRUPT   Verifying prerequisite patches for patch00002 ...please waitINSTALLATION OF patch00002 IN PROGRESS.  DO NOT INTERRUPT   Verifying prerequisite patches for patch00003 ...please wait[7;45H4INSTALLATION OF patch00004 IN PROGRESS.  DO NOT INTERRUPT   
+INSTALLATION OF patch00004 COMPLETED SUCCESSFULLY.[7;58H
+[J[7;26H5[8;51H[1AVerifying prerequisite patches for patch00006 ...please wait
+
+[2AINSTALLATION OF patch00006 IN PROGRESS.  DO NOT INTERRUPT   Verifying prerequisite patches for patch00007 ...please waitINSTALLATION OF patch00007 IN PROGRESS.  DO NOT INTERRUPT   
+INSTALLATION OF patch00007 COMPLETED SUCCESSFULLY.
+   Installing patch00008...[7;58H
+[J[7;26H8
+
+ [2AVerifying prerequisite patches for patch00009 ...please waitINSTALLATION OF patch00009 IN PROGRESS.  DO NOT INTERRUPT   Verifying prerequisite patches for patch00010 ...please wait
+
+
+[3AINSTALLATION OF patch00010 IN PROGRESS.  DO NOT INTERRUPT   Verifying prerequisite patches for patch00011 ...please wait[H[J[7;61H[H-------------------------------------------------------------------------------
+[ Patches v0.2.3-B1[2;41HCopyright (c) 1992,1993 Terry Lambert ]
+-------------------------------------------------------------------------------
+
+
+
+Verifying prerequisite patches for patch00012 ...please wait
+
+[2AINSTALLATION OF patch00012 IN PROGRESS.  DO NOT INTERRUPT   Verifying prerequisite patches for patch00013 ...please wait
+
+[1AAll prerequisite patches found.
+
+THIS IS YOUR LAST CHANCE!  CONTINUE INSTALLING patch00013? YES[2A[J[7;45H4[7;58HINSTALLATION OF patch00014 IN PROGRESS.  DO NOT INTERRUPT   Verifying prerequisite patches for patch00015 ...please waitINSTALLATION OF patch00015 IN PROGRESS.  DO NOT INTERRUPT   Verifying prerequisite patches for patch00016 ...please waitINSTALLATION OF patch00016 IN PROGRESS.  DO NOT INTERRUPT   Verifying prerequisite patches for patch00017 ...please waitINSTALLATION OF patch00017 IN PROGRESS.  DO NOT INTERRUPT   Verifying prerequisite patches for patch00018 ...please waitINSTALLATION OF patch00018 IN PROGRESS.  DO NOT INTERRUPT   
+INSTALLATION OF patch00018 COMPLETED SUCCESSFULLY.[7;58H
+[J[1AVerifying prerequisite patches for patch00019 ...please wait[8;51H[1AINSTALLATION OF patch00019 IN PROGRESS.  DO NOT INTERRUPT   Verifying prerequisite patches for patch00020 ...please waitINSTALLATION OF patch00020 IN PROGRESS.  DO NOT INTERRUPT   Verifying prerequisite patches for patch00021 ...please waitINSTALLATION OF patch00021 IN PROGRESS.  DO NOT INTERRUPT   Verifying prerequisite patches for patch00022 ...please waitINSTALLATION OF patch00022 IN PROGRESS.  DO NOT INTERRUPT   Verifying prerequisite patches for patch00023 ...please waitINSTALLATION OF patch00023 IN PROGRESS.  DO NOT INTERRUPT   Verifying prerequisite patches for patch00024 ...please waitINSTALLATION OF patch00024 IN PROGRESS.  DO NOT INTERRUPT   Verifying prerequisite patches for patch00025 ...please waitINSTALLATION OF patch00025 IN PROGRESS.  DO NOT INTERRUPT   Verifying prerequisite patches for patch00026 ...please waitINSTALLATION OF patch00026 IN PROGRESS.  DO NOT INTERRUPT   Verifying prerequisite patches for patch00027 ...please waitINSTALLATION OF patch00027 IN PROGRESS.  DO NOT INTERRUPT   
+INSTALLATION OF patch00027 COMPLETED SUCCESSFULLY.[7;58H[H[J[8;51H[H-------------------------------------------------------------------------------
+[ Patches v0.2.3-B1[2;41HCopyright (c) 1992,1993 Terry Lambert ]
+-------------------------------------------------------------------------------
+
+
+
+Verifying prerequisite patches for patch00029 ...please wait[J
+
+[2AINSTALLATION OF patch00030 IN PROGRESS.  DO NOT INTERRUPTVerifying prerequisite patches for patch00031 ...please waitINSTALLATION OF patch0[K[7;61H[J[7;58HVerifying prerequisite patches for patch00032 ...please waitINSTALLATION OF patch00032 IN PROGRESS.  DO NOT INTERRUPT   Verifying prerequisite patches for patch00033 ...please wait
+All prerequisite patches found.
+
+THIS IS YOUR LAST CHANCE!  CONTINUE INSTALLING patch00033?[3A[J[7;58HVerifying prerequisite patches for patch00034 ...please wait
+All prerequisite patches found.
+
+THIS IS YOUR LAST CHANCE!  CONTINUE INSTALLING patch00034?[J[3AINSTALLATION OF patch00034 IN PROGRESS.  DO NOT INTERRUPT   
+INSTALLATION OF patch00034 COMPLETED SUCCESSFULLY.
+   Installing patch00035...[2AVerifying prerequisite patches for patch00035 ...please wait
+All prerequisite patches found.                   
+[K
+THIS IS YOUR LAST CHANCE!  CONTINUE INSTALLING patch00035? YES[J[3AINSTALLATION OF patch00035 IN PROGRESS.  DO NOT INTERRUPT   
+INSTALLATION OF patch00035 COMPLETED SUCCESSFULLY.[7;58HVerifying prerequisite patches for patch00036 ...please wait
+All prerequisite patches found.                   
+
+THIS IS YOUR LAST CHANCE!  CONTINUE INSTALLING patch00036?[H[J[7;58H[H-------------------------------------------------------------------------------
+[ Patches v0.2.3-B1[2;41HCopyright (c) 1992,1993 Terry Lambert ]
+-------------------------------------------------------------------------------
+
+
+
+INSTALLATION OF patch00037 IN PROGRESS.  DO NOT INTERRUPTVerifying prerequisite patches for patch00038 ...please waitINSTALLATION OF patch00038 IN PROGRESS.  DO NOT INTERRUPT   Verifying prerequisite patches for patch00039 ...please wait
+
+[2AINSTALLATION OF patch00039 IN PROGRESS.  DO NOT INTERRUPT   [H[J[9B[H-------------------------------------------------------------------------------
+[ Patches v0.2.3-B1[2;41HCopyright (c) 1992,1993 Terry Lambert ]
+-------------------------------------------------------------------------------
+
+
+
+Verifying prerequisite patches for patch00040 ...please waitINSTALLATION OF patch00040 IN PROGRESS.  DO NOT INTERRUPT   Verifying prerequisite patches for patch00041 ...please waitINSTALLATION OF patch00041 IN PROGRESS.  DO NOT INTERRUPT   
+INSTALLATION OF patch00041 COMPLETED SUCCESSFULLY.
+[1A[J[1AVerifying prerequisite patches for patch00042 ...please wait[8;51H[1AINSTALLATION OF patch00042 IN PROGRESS.  DO NOT INTERRUPT   
+INSTALLATION OF patch00042 COMPLETED SUCCESSFULLY.
+   Installing patch00043...[7;58H
+[J[7;26H3
+
+ [2AVerifying prerequisite patches for patch00044 ...please waitINSTALLATION OF patch00044 IN PROGRESS.  DO NOT INTERRUPT   Verifying prerequisite patches for patch00045 ...please waitINSTALLATION OF patch00045 IN PROGRESS.  DO NOT INTERRUPT   Verifying prerequisite patches for patch00046 ...please waitINSTALLATION OF patch00046 IN PROGRESS.  DO NOT INTERRUPT   Verifying prerequisite patches for patch00047 ...please waitINSTALLATION OF patch00047 IN PROGRESS.  DO NOT INTERRUPT   [H[J[7;61H[H-------------------------------------------------------------------------------
+[ Patches v0.2.3-B1[2;41HCopyright (c) 1992,1993 Terry Lambert ]
+-------------------------------------------------------------------------------
+
+
+
+Verifying prerequisite patches for patch00049 ...please waitINSTALLATION OF patch00049 IN PROGRESS.  DO NOT INTERRUPT   Verifying prerequisite patches for patch00050 ...please waitINSTALLATION OF patch00050 IN PROGRESS.  DO NOT INTERRUPT   
+INSTALLATION OF patch00050 COMPLETED SUCCESSFULLY.
+   Installing patch00051...[1A[J[7;26H1[7;61HVerifying prerequisite patches for patch00052 ...please waitINSTALLATION OF patch00052 IN PROGRESS.  DO NOT INTERRUPT   Verifying prerequisite patches for patch00053 ...please wait
+All prerequisite patches found.
+
+THIS IS YOUR LAST CHANCE!  CONTINUE INSTALLING patch00053? YES[2A[J[1AINSTALLATION OF patch00053 IN PROGRESS.  DO NOT INTERRUPT   
+
+
+  [3AVerifying prerequisite patches for patch00054 ...please wait
+All prerequisite patches found.
+
+THIS IS YOUR LAST CHANCE!  CONTINUE INSTALLING patch00054? YES[3A[J[10;63H[3AINSTALLATION OF patch00055 IN PROGRESS.  DO NOT INTERRUPTVerifying prerequisite patches for patch00056 ...please waitINSTALLATION OF patch00056 IN PROGRESS.  DO NOT INTERRUPT   Verifying prerequisite patches for patch00057 ...please waitINSTALLATION OF patch00057 IN PROGRESS.  DO NOT INTERRUPT   [H[J[7;58H[H-------------------------------------------------------------------------------
+[ Patches v0.2.3-B1[2;41HCopyright (c) 1992,1993 Terry Lambert ]
+-------------------------------------------------------------------------------
+
+
+
+INSTALLATION OF patch00058 IN PROGRESS.  DO NOT INTERRUPTVerifying prerequisite patches for patch00059 ...please wait[7;44H60[7;61HINSTALLATION OF patch00060 IN PROGRESS.  DO NOT INTERRUPT   Verifying prerequisite patches for patch00061 ...please waitINSTALLATION OF patch00061 IN PROGRESS.  DO NOT INTERRUPT   Verifying prerequisite patches for patch00062 ...please waitINSTALLATION OF patch00062 IN PROGRESS.  DO NOT INTERRUPT   
+INSTALLATION OF patch00062 COMPLETED SUCCESSFULLY.
+   Installing patch00063...[1A[J[7;26H3[7;61HVerifying prerequisite patches for patch00064 ...please waitINSTALLATION OF patch00064 IN PROGRESS.  DO NOT INTERRUPT   [7;26H5Verifying prerequisite patches for patch00066 ...please waitINSTALLATION OF patch00066 IN PROGRESS.  DO NOT INTERRUPT   Verifying prerequisite patches for patch00067 ...please wait[7;45H8INSTALLATION OF patch00068 IN PROGRESS.  DO NOT INTERRUPT   [7;26H9Verifying prerequisite patches for patch00070 ...please waitINSTALLATION OF patch00070 IN PROGRESS.  DO NOT INTERRUPT   Verifying prerequisite patches for patch00071 ...please wait[7;45H2INSTALLATION OF patch00072 IN PROGRESS.  DO NOT INTERRUPT   
+INSTALLATION OF patch00072 COMPLETED SUCCESSFULLY.
+   Installing patch00073...[1A[J[1AVerifying prerequisite patches for patch00073 ...please wait[9;28H[2AINSTALLATION OF patch00073 IN PROGRESS.  DO NOT INTERRUPT   
+INSTALLATION OF patch00073 COMPLETED SUCCESSFULLY.
+[1A[J[7;26H4[8;51H[1AVerifying prerequisite patches for patch00075 ...please wait[7;45H6INSTALLATION OF patch00076 IN PROGRESS.  DO NOT INTERRUPT   [H[J[7;58H[H-------------------------------------------------------------------------------
+[ Patches v0.2.3-B1[2;41HCopyright (c) 1992,1993 Terry Lambert ]
+-------------------------------------------------------------------------------
+
+
+
+Verifying prerequisite patches for patch00078 ...please waitINSTALLATION OF patch00078 IN PROGRESS.  DO NOT INTERRUPT   Verifying prerequisite patches for patch00079 ...please waitINSTALLATION OF patch00079 IN PROGRESS.  DO NOT INTERRUPT   
+INSTALLATION OF patch00079 COMPLETED SUCCESSFULLY.
+   Installing patch00080...[1A[J[7;25H80[7;58H[7;26H1Verifying prerequisite patches for patch00082 ...please wait[3A
+
+
+INSTALLATION OF patch00082 IN PROGRESS.  DO NOT INTERRUPT   Verifying prerequisite patches for patch00083 ...please waitINSTALLATION OF patch00083 IN PROGRESS.  DO NOT INTERRUPT   
+INSTALLATION OF patch00083 COMPLETED SUCCESSFULLY.[7;58H
+[J[7;26H4[8;51H[1AVerifying prerequisite patches for patch00085 ...please waitINSTALLATION OF patch00085 IN PROGRESS.  DO NOT INTERRUPT   Verifying prerequisite patches for patch00086 ...please wait[7;45H7
+
+[1AAll prerequisite patches found.
+
+THIS IS YOUR LAST CHANCE!  CONTINUE INSTALLING patch00087? YES[2A[J[1AINSTALLATION OF patch00087 IN PROGRESS.  DO NOT INTERRUPT   Verifying prerequisite patches for patch00088 ...please waitINSTALLATION OF patch00088 IN PROGRESS.  DO NOT INTERRUPT   
+INSTALLATION OF patch00088 COMPLETED SUCCESSFULLY.
+   Installing patch00089...[H[J[10B[H-------------------------------------------------------------------------------
+[ Patches v0.2.3-B1[2;41HCopyright (c) 1992,1993 Terry Lambert ]
+-------------------------------------------------------------------------------
+
+
+
+Verifying prerequisite patches for patch00090 ...please waitINSTALLATION OF patch00090 IN PROGRESS.  DO NOT INTERRUPT   Verifying prerequisite patches for patch00093 ...please waitINSTALLATION OF patch00093 IN PROGRESS.  DO NOT INTERRUPT   
+INSTALLATION OF patch00093 COMPLETED SUCCESSFULLY.
+   Installing patch00094...[7;58H
+[J[7;26H4
+
+ [2AVerifying prerequisite patches for patch00095 ...please wait
+
+[2AINSTALLATION OF patch00095 IN PROGRESS.  DO NOT INTERRUPT   Verifying prerequisite patches for patch00096 ...please waitINSTALLATION OF patch00096 IN PROGRESS.  DO NOT INTERRUPT   Verifying prerequisite patches for patch00097 ...please waitINSTALLATION OF patch00097 IN PROGRESS.  DO NOT INTERRUPT   Verifying prerequisite patches for patch00098 ...please wait
+
+
+[3AINSTALLATION OF patch00098 IN PROGRESS.  DO NOT INTERRUPT   
+INSTALLATION OF patch00098 COMPLETED SUCCESSFULLY.
+[1A[J[1AVerifying prerequisite patches for patch00099 ...please wait[8;51H[1AINSTALLATION OF patch00099 IN PROGRESS.  DO NOT INTERRUPT   [7;24H1001[7;58HVerifying prerequisite patches for patch00102 ...please waitINSTALLATION OF patch00102 IN PROGRESS.  DO NOT INTERRUPT   Verifying prerequisite patches for patch00103 ...please waitINSTALLATION OF patch00103 IN PROGRESS.  DO NOT INTERRUPT   Verifying prerequisite patches for patch00104 ...please waitINSTALLATION OF patch00104 IN PROGRESS.  DO NOT INTERRUPT   Verifying prerequisite patches for patch00105 ...please wait
+All prerequisite patches found.
+
+THIS IS YOUR LAST CHANCE!  CONTINUE INSTALLING patch00105?[3Ait[J[10;59H[3AINSTALLATION OF patch00106 IN PROGRESS.  DO NOT INTERRUPTVerifying prerequisite patches for patch00107 ...please waitINSTALLATION OF patch00107 IN PROGRESS.  DO NOT INTERRUPT   Verifying prerequisite patches for patch00108 ...please waitINSTALLATION OF patch00108 IN PROGRESS.  DO NOT INTERRUPT   Verifying prerequisite patches for patch00109 ...please wait
+All prerequisite patches found.
+
+THIS IS YOUR LAST CHANCE!  CONTINUE INSTALLING patch00109? YES[3A[J
+
+[2AINSTALLATION OF patch00110 IN PROGRESS.  DO NOT INTERRUPTVerifying prerequisite patches for patch00111 ...please waitINSTALLATION OF patch00111 IN PROGRESS.  DO NOT INTERRUPT   
+INSTALLATION OF patch00111 COMPLETED SUCCESSFULLY.[7;58H
+[J[1AVerifying prerequisite patches for patch00112 ...please wait[8;51H[7;61HINSTALLATION OF patch00112 IN PROGRESS.  DO NOT INTERRUPT   Verifying prerequisite patches for patch00113 ...please waitINSTALLATION OF patch00113 IN PROGRESS.  DO NOT INTERRUPT   Verifying prerequisite patches for patch00114 ...please waitINSTALLATION OF patch00114 IN PROGRESS.  DO NOT INTERRUPT   Verifying prerequisite patches for patch00115 ...please waitINSTALLATION OF patch00115 IN PROGRESS.  DO NOT INTERRUPT   Verifying prerequisite patches for patch00116 ...please waitINSTALLATION OF patch00116 IN PROGRESS.  DO NOT INTERRUPT   Verifying prerequisite patches for patch00117 ...please waitINSTALLATION OF patch00117 IN PROGRESS.  DO NOT INTERRUPT   [7;26H8[7;61HVerifying prerequisite patches for patch00119 ...please waitINSTALLATION OF patch00119 IN PROGRESS.  DO NOT INTERRUPT   
+INSTALLATION OF patch00119 COMPLETED SUCCESSFULLY.
+   Installing patch00120...[1A[J[7;25H20
+
+ [2AVerifying prerequisite patches for patch00121 ...please wait[7;45H2INSTALLATION OF patch00122 IN PROGRESS.  DO NOT INTERRUPT   
+INSTALLATION OF patch00122 COMPLETED SUCCESSFULLY.[7;58H
+[J[7;26H3[8;51H[1AVerifying prerequisite patches for patch00124 ...please waitINSTALLATION OF patch00124 IN PROGRESS.  DO NOT INTERRUPT   Verifying prerequisite patches for patch00125 ...please waitINSTALLATION OF patch00125 IN PROGRESS.  DO NOT INTERRUPT   Verifying prerequisite patches for patch00126 ...please wait
+All prerequisite patches found.
+
+THIS IS YOUR LAST CHANCE!  CONTINUE INSTALLING patch00126? YES
+[3A[J[1AINSTALLATION OF patch00126 IN PROGRESS.  DO NOT INTERRUPT   
+
+
+  [7;58HVerifying prerequisite patches for patch00127 ...please waitINSTALLATION OF patch00127 IN PROGRESS.  DO NOT INTERRUPT   
+INSTALLATION OF patch00127 COMPLETED SUCCESSFULLY.
+   Installing patch00128...[7;58H
+[J[7;26H8
+
+ [2AVerifying prerequisite patches for patch00129 ...please waitINSTALLATION OF patch00129 IN PROGRESS.  DO NOT INTERRUPT   [7;25H31[7;58HVerifying prerequisite patches for patch00134 ...please wait
+All prerequisite patches found.
+
+THIS IS YOUR LAST CHANCE!  CONTINUE INSTALLING patch00134? YES[3A[J[10;63H[3AVerifying prerequisite patches for patch00135 ...please waitINSTALLATION OF patch00135 IN PROGRESS.  DO NOT INTERRUPT   Verifying prerequisite patches for patch00136 ...please waitINSTALLATION OF patch00136 IN PROGRESS.  DO NOT INTERRUPT   Verifying prerequisite patches for patch00137 ...please waitINSTALLATION OF patch00137 IN PROGRESS.  DO NOT INTERRUPT   Verifying prerequisite patches for patch00138 ...please waitINSTALLATION OF patch00138 IN PROGRESS.  DO NOT INTERRUPT   
+INSTALLATION OF patch00138 COMPLETED SUCCESSFULLY.[7;58H[H[J[8;51H[H------------------------------------------------------------------
+Since you are running this script interactively, the output of
+the afterinstall process is being automatically logged to the file:[5;17H/usr/src/afterinstall.OUT
+
+You may find it useful to look through this file after this script is
+completed, since it will NOT terminate upon encountering any errors
+and potentially valuable information may scroll off your screen!
+------------------------------------------------------------------
+
+symlinks: net netccitt netimp netinet netiso netns nfs sys ufs vm
+rm -f /usr/include/machine
+ln -s /sys/i386/include /usr/include/machine
+chown bin.bin /usr/include/machine
+installing a.out.h ar.h assert.h bitstring.h ctype.h db.h dirent.h disktab.h fst[17;1Hab.h fts.h glob.h grp.h kvm.h limits.h locale.h math.h memory.h ndbm.h netdb.h n[18;1Hlist.h paths.h pwd.h ranlib.h regexp.h resolv.h setjmp.h sgtty.h stab.h stdarg.h[19;2Hstddef.h stdio.h stdlib.h string.h strings.h struct.h sysexits.h time.h ttyent.[20;1Hh tzfile.h unistd.h utime.h utmp.h varargs.h vis.h
+installing arpa protocols
+installing errno.h fcntl.h signal.h syslog.h termios.h
+
+
+
+
+
+[5Ainstalling float.h frame.h
+install -c -o bin -g bin -m 444 bsd.README bsd.doc.mk bsd.lib.mk bsd.man.mk bsd.[21;1Hown.mk  bsd.prog.mk bsd.subdir.mk sys.mk  /usr/share/mk
+rm -f a.out [Ee]rrs mklog core config config.o main.o lang.o mkioconf.o mkmakefi[23;1Hle.o mkglue.o mkheaders.o mkswapconf.o y.tab.h lang.c config.c y.tab.c[8Cco[24;1Hnfig.0[73C
+
+
+[2Ayacc -d /usr/src/usr.sbin/config/config.y
+mv y.tab.c config.c
+cc -O -I. -I/usr/src/usr.sbin/config  -c config.c[30C
+cc -O -I. -I/usr/src/usr.sbin/config  -c /usr/src/usr.sbin/config/main.c[7C
+
+
+[2Alex  /usr/src/usr.sbin/config/lang.l
+mv lex.yy.c lang.c
+cc -O -I. -I/usr/src/usr.sbin/config  -c lang.c[25C[7C
+cc -O -I. -I/usr/src/usr.sbin/config  -c /usr/src/usr.sbin/config/mkioconf.c   
+cc -O -I. -I/usr/src/usr.sbin/config  -c /usr/src/usr.sbin/config/mkmakefile.c 
+cc -O -I. -I/usr/src/usr.sbin/config  -c /usr/src/usr.sbin/config/mkglue.c    
+cc -O -I. -I/usr/src/usr.sbin/config  -c /usr/src/usr.sbin/config/mkheaders.c  
+
+
+[2Acc -O -I. -I/usr/src/usr.sbin/config  -c /usr/src/usr.sbin/config/mkswapconf.c
+cc  -o config config.o main.o lang.o mkioconf.o mkmakefile.o mkglue.o mkheaders.[24;1Ho mkswapconf.o -lln[58C
+nroff -mandoc /usr/src/usr.sbin/config/config.8 > config.0[21C
+
+
+
+
+[4Ainstall -c -s -o bin -g bin -m 555  config /usr/sbin
+install -c -o bin -g bin -m 444 config.0 /usr/share/man/cat8
+rm -f a.out [Ee]rrs mklog core config config.o main.o lang.o mkioconf.o mkmakefi[23;1Hle.o mkglue.o mkheaders.o mkswapconf.o y.tab.h lang.c config.c y.tab.c[8Cco[24;1Hnfig.0[73C
+
+
+
+
+
+
+[6Arm -f a.out [Ee]rrs mklog core bugfiler bugfiler.o error.o gethead.o process.o r[19;1Hedist.o reply.o  sendbug.0[7Cbugfiler.0
+cc -O -I. -D"BUGS_HOME \"owner-386bsd_bugs@bsd.coe.montana.edu\""  -c bugfiler.c[22;1Hcc -O -I. -D"BUGS_HOME \"owner-386bsd_bugs@bsd.coe.montana.edu\""  -c error.c
+cc -O -I. -D"BUGS_HOME \"owner-386bsd_bugs@bsd.coe.montana.edu\""  -c gethead.c
+cc -O -I. -D"BUGS_HOME \"owner-386bsd_bugs@bsd.coe.montana.edu\""  -c process.c
+
+[1Acc -O -I. -D"BUGS_HOME \"owner-386bsd_bugs@bsd.coe.montana.edu\""  -c redist.c
+cc -O -I. -D"BUGS_HOME \"owner-386bsd_bugs@bsd.coe.montana.edu\""  -c reply.c  
+
+[1Acc  -o bugfiler bugfiler.o error.o gethead.o process.o redist.o reply.o
+nroff -mandoc sendbug.1 > sendbug.0[42C
+nroff -mandoc bugfiler.8 > bugfiler.0[42C
+
+[1Ainstall -c -o bin -g bin -m 555  ./sendbug.sh /usr/bin/sendbug
+install -c -o bin -g bin -m 444 ./bugformat  /usr/share/misc
+
+
+
+
+
+
+[6Ainstall -c -s -o root -g bin -m 4555  bugfiler /usr/libexec
+install -c -o bin -g bin -m 444 sendbug.0 /usr/share/man/cat1
+install -c -o bin -g bin -m 444 bugfiler.0 /usr/share/man/cat8
+rm -f a.out [Ee]rrs mklog core bugfiler bugfiler.o error.o gethead.o process.o r[22;1Hedist.o reply.o  sendbug.0[7Cbugfiler.0
+rm -f a.out [Ee]rrs mklog core init
+cc -O  -o init ../init.c -lutil[48C
+install -c -s -o bin -g bin -m 555  init /sbin[33C
+rm -f a.out [Ee]rrs mklog core init[24;47H[33C[HREADME README README README README README README README README README
+[K
+NOTE: There have been MANY CHANGES to the GENERICISA KERNEL, you
+      may want to look at it if you are using a copy of it for your             [5;7Hkernel.
+[K
+It is recomended that you follow these steps to rebuild your kernel            
+at this time:[K
+[K
+          rm -r /sys/compile/*                  #HIGHLY RECOMMENDED!         
+          cd /sys/i386/conf[K
+          config YOUR_KERNEL_NAME  
+          cd /sys/compile/YOUR_KERNEL_NAME
+          make depend[K
+          make[K
+          mv /386bsd /386bsd.old                           
+          cp 386bsd /386bsd[K
+          sync; sync; sync;[K
+          reboot[K
+[K
+Please do this before attempting to run buildworld.sh
+[K
+README README README README README README README README README README
+Don't forget to run "make depend"  
+
+
+[2Acc  -I. -I../.. -I../../sys -DKERNEL -DGENERICISA -Di386 -DUCONSOLE -DXSERVER -D[23;1HTCP_COMPAT_42 -DCOMPAT_43 -DNFS -DISOFS -DINET -DTIMEZONE=480 -DDST=1 -DMAXUSERS[24;1H=10  ../../i386/i386/genassym.c -o genassym[36C
+./genassym >assym.s[24;44H[Hn_pcb.c ../../netinet/in_proto.c ../../netinet/ip_icmp.c  ../../netinet/ip_input[2;1H.c ../../netinet/ip_output.c ../../netinet/raw_ip.c  ../../netinet/tcp_debug.c .[3;1H./../netinet/tcp_input.c  ../../netinet/tcp_output.c ../../netinet/tcp_subr.c  .[4;1H./../netinet/tcp_timer.c ../../netinet/tcp_usrreq.c  ../../netinet/udp_usrreq.c
+../../nfs/nfs_bio.c ../../nfs/nfs_node.c  ../../nfs/nfs_serv.c ../../nfs/nfs_soc[6;1Hket.c ../../nfs/nfs_srvcache.c  ../../nfs/nfs_subs.c ../../nfs/nfs_syscalls.c ..[7;1H/../nfs/nfs_vfsops.c  ../../nfs/nfs_vnops.c ../../ufs/ufs_alloc.c ../../ufs/ufs_[8;1Hbmap.c  ../../ufs/ufs_disksubr.c ../../ufs/ufs_inode.c ../../ufs/ufs_lockf.c  ..[9;1H/../ufs/ufs_lookup.c ../../ufs/ufs_subr.c ../../ufs/ufs_tables.c  ../../ufs/ufs_[10;1Hvfsops.c ../../ufs/ufs_vnops.c ../../vm/device_pager.c  ../../vm/kern_lock.c ../[11;1H../vm/swap_pager.c ../../vm/vm_fault.c  ../../vm/vm_glue.c ../../vm/vm_init.c ..[12;1H/../vm/vm_kern.c ../../vm/vm_map.c  ../../vm/vm_meter.c ../../vm/vm_mmap.c ../..[13;1H/vm/vm_object.c  ../../vm/vm_page.c ../../vm/vm_pageout.c ../../vm/vm_pager.c  .[14;1H./../vm/vm_swap.c ../../vm/vm_unix.c ../../vm/vm_user.c  ../../vm/vnode_pager.c
+../../i386/i386/autoconf.c ../../i386/i386/cons.c  ../../i386/i386/in_cksum.c ..[16;1H/../i386/i386/machdep.c  ../../i386/i386/math_emulate.c ../../i386/i386/mem.c  .[17;1H./../i386/i386/pmap.c ../../i386/i386/sys_machdep.c  ../../i386/i386/trap.c ../.[18;1H./i386/i386/vm_machdep.c  ../../i386/isa/aha1542.c ../../i386/isa/aha1742.c ../.[19;1H./i386/isa/clock.c  ../../i386/isa/com.c ../../i386/isa/fd.c ../../i386/isa/if_e[20;1Hc.c  ../../i386/isa/if_is.c ../../i386/isa/if_ne.c ../../i386/isa/if_we.c  ../..[21;1H/i386/isa/isa.c ../../i386/isa/lpa.c ../../i386/isa/lpt.c  ../../i386/isa/npx.c [22;1H../../i386/isa/pccons.c ../../i386/isa/spkr.c  ../../i386/isa/wd.c ../../i386/is[23;1Ha/wt.c ../../scsi/cd.c  ../../scsi/scsiconf.c ../../scsi/sd.c ../../scsi/st.c sw[24;1Hap386bsd.c  ioconf.c[59C
+
+
+[2Ash /usr/bin/mkdep -a -p -I. -I../.. -I../../sys -DGENERICISA -Di386 -DUCONSOLE -[23;1HDXSERVER -DTCP_COMPAT_42 -DCOMPAT_43 -DNFS -DISOFS -DINET -DTIMEZONE=480 -DDST=1[24;2H-DMAXUSERS=10 ../../i386/i386/genassym.c[38C
+
+
+
+
+[4Agrep -v '^#' ../../i386/i386/symbols.raw  | sed 's/^    //' | sort -u > symbols.[21;1Hsort
+cpp -I. -DLOCORE -I. -I../.. -I../../sys -DGENERICISA -Di386 -DUCONSOLE -DXSERVE[23;1HR -DTCP_COMPAT_42 -DCOMPAT_43 -DNFS -DISOFS -DINET -DKERNEL -Di386 -DNPX ../../i[24;1H386/i386/locore.s |  as  -o locore.o[5C
+
+
+[2Acc  -c -O -I. -I../.. -I../../sys -DGENERICISA -Di386 -DUCONSOLE -DXSERVER -DTCP[23;1H_COMPAT_42 -DCOMPAT_43 -DNFS -DISOFS -DINET -DKERNEL -Di386 -DNPX  ../../isofs/i[24;1Hsofs_bmap.c[68C
+
+
+[2Acc  -c -O -I. -I../.. -I../../sys -DGENERICISA -Di386 -DUCONSOLE -DXSERVER -DTCP[23;1H_COMPAT_42 -DCOMPAT_43 -DNFS -DISOFS -DINET -DKERNEL -Di386 -DNPX  ../../isofs/i[24;1Hsofs_lookup.c
+
+
+[2Acc  -c -O -I. -I../.. -I../../sys -DGENERICISA -Di386 -DUCONSOLE -DXSERVER -DTCP[23;1H_COMPAT_42 -DCOMPAT_43 -DNFS -DISOFS -DINET -DKERNEL -Di386 -DNPX  ../../isofs/i[24;1Hsofs_node.c[68C
+
+
+[2Acc  -c -O -I. -I../.. -I../../sys -DGENERICISA -Di386 -DUCONSOLE -DXSERVER -DTCP[23;1H_COMPAT_42 -DCOMPAT_43 -DNFS -DISOFS -DINET -DKERNEL -Di386 -DNPX  ../../isofs/i[24;1Hsofs_util.c
+
+
+[2Acc  -c -O -I. -I../.. -I../../sys -DGENERICISA -Di386 -DUCONSOLE -DXSERVER -DTCP[23;1H_COMPAT_42 -DCOMPAT_43 -DNFS -DISOFS -DINET -DKERNEL -Di386 -DNPX  ../../isofs/i[24;1Hsofs_vfsops.c[66C
+
+
+[2Acc  -c -O -I. -I../.. -I../../sys -DGENERICISA -Di386 -DUCONSOLE -DXSERVER -DTCP[23;1H_COMPAT_42 -DCOMPAT_43 -DNFS -DISOFS -DINET -DKERNEL -Di386 -DNPX  ../../isofs/i[24;1Hsofs_vnops.c[67C
+
+
+[2Acc  -c -O -I. -I../.. -I../../sys -DGENERICISA -Di386 -DUCONSOLE -DXSERVER -DTCP[23;1H_COMPAT_42 -DCOMPAT_43 -DNFS -DISOFS -DINET -DKERNEL -Di386 -DNPX  ../../kern/de[24;1Had_vnops.c  
+
+
+[2Acc  -c -O -I. -I../.. -I../../sys -DGENERICISA -Di386 -DUCONSOLE -DXSERVER -DTCP[23;1H_COMPAT_42 -DCOMPAT_43 -DNFS -DISOFS -DINET -DKERNEL -Di386 -DNPX  ../../kern/in[24;1Hit_main.c[70C
+
+
+[2Acc  -c -O -I. -I../.. -I../../sys -DGENERICISA -Di386 -DUCONSOLE -DXSERVER -DTCP[23;1H_COMPAT_42 -DCOMPAT_43 -DNFS -DISOFS -DINET -DKERNEL -Di386 -DNPX  ../../kern/in[24;1Hit_sysent.c
+
+
+
+
+
+[5Acc  -c -O -I. -I../.. -I../../sys -DGENERICISA -Di386 -DUCONSOLE -DXSERVER -DTCP[20;1H_COMPAT_42 -DCOMPAT_43 -DNFS -DISOFS -DINET -DKERNEL -Di386 -DNPX  ../../kern/ke[21;1Hrn__physio.c
+cc  -c -O -I. -I../.. -I../../sys -DGENERICISA -Di386 -DUCONSOLE -DXSERVER -DTCP[23;1H_COMPAT_42 -DCOMPAT_43 -DNFS -DISOFS -DINET -DKERNEL -Di386 -DNPX  ../../kern/ke[24;1Hrn_acct.c[70C
+
+
+[2Acc  -c -O -I. -I../.. -I../../sys -DGENERICISA -Di386 -DUCONSOLE -DXSERVER -DTCP[23;1H_COMPAT_42 -DCOMPAT_43 -DNFS -DISOFS -DINET -DKERNEL -Di386 -DNPX  ../../kern/ke[24;1Hrn_clock.c
+
+
+[2Acc  -c -O -I. -I../.. -I../../sys -DGENERICISA -Di386 -DUCONSOLE -DXSERVER -DTCP[23;1H_COMPAT_42 -DCOMPAT_43 -DNFS -DISOFS -DINET -DKERNEL -Di386 -DNPX  ../../kern/ke[24;1Hrn_descrip.c[67C
+
+
+[2Acc  -c -O -I. -I../.. -I../../sys -DGENERICISA -Di386 -DUCONSOLE -DXSERVER -DTCP[23;1H_COMPAT_42 -DCOMPAT_43 -DNFS -DISOFS -DINET -DKERNEL -Di386 -DNPX  ../../kern/ke[24;1Hrn_execve.c[68C
+
+
+[2Acc  -c -O -I. -I../.. -I../../sys -DGENERICISA -Di386 -DUCONSOLE -DXSERVER -DTCP[23;1H_COMPAT_42 -DCOMPAT_43 -DNFS -DISOFS -DINET -DKERNEL -Di386 -DNPX  ../../kern/ke[24;1Hrn_exit.c  
+
+
+[2Acc  -c -O -I. -I../.. -I../../sys -DGENERICISA -Di386 -DUCONSOLE -DXSERVER -DTCP[23;1H_COMPAT_42 -DCOMPAT_43 -DNFS -DISOFS -DINET -DKERNEL -Di386 -DNPX  ../../kern/ke[24;1Hrn_fork.c
+
+
+[2Acc  -c -O -I. -I../.. -I../../sys -DGENERICISA -Di386 -DUCONSOLE -DXSERVER -DTCP[23;1H_COMPAT_42 -DCOMPAT_43 -DNFS -DISOFS -DINET -DKERNEL -Di386 -DNPX  ../../kern/ke[24;1Hrn_kinfo.c[69C
+
+
+
+
+
+[5Acc  -c -O -I. -I../.. -I../../sys -DGENERICISA -Di386 -DUCONSOLE -DXSERVER -DTCP[20;1H_COMPAT_42 -DCOMPAT_43 -DNFS -DISOFS -DINET -DKERNEL -Di386 -DNPX  ../../kern/ke[21;1Hrn_ktrace.c
+cc  -c -O -I. -I../.. -I../../sys -DGENERICISA -Di386 -DUCONSOLE -DXSERVER -DTCP[23;1H_COMPAT_42 -DCOMPAT_43 -DNFS -DISOFS -DINET -DKERNEL -Di386 -DNPX  ../../kern/ke[24;1Hrn_malloc.c
+
+
+[2Acc  -c -O -I. -I../.. -I../../sys -DGENERICISA -Di386 -DUCONSOLE -DXSERVER -DTCP[23;1H_COMPAT_42 -DCOMPAT_43 -DNFS -DISOFS -DINET -DKERNEL -Di386 -DNPX  ../../kern/ke[24;1Hrn_proc.c[70C
+
+
+[2Acc  -c -O -I. -I../.. -I../../sys -DGENERICISA -Di386 -DUCONSOLE -DXSERVER -DTCP[23;1H_COMPAT_42 -DCOMPAT_43 -DNFS -DISOFS -DINET -DKERNEL -Di386 -DNPX  ../../kern/ke[24;1Hrn_prot.c
+
+
+[2Acc  -c -O -I. -I../.. -I../../sys -DGENERICISA -Di386 -DUCONSOLE -DXSERVER -DTCP[23;1H_COMPAT_42 -DCOMPAT_43 -DNFS -DISOFS -DINET -DKERNEL -Di386 -DNPX  ../../kern/ke[24;1Hrn_resource.c[66C
+
+
+[2Acc  -c -O -I. -I../.. -I../../sys -DGENERICISA -Di386 -DUCONSOLE -DXSERVER -DTCP[23;1H_COMPAT_42 -DCOMPAT_43 -DNFS -DISOFS -DINET -DKERNEL -Di386 -DNPX  ../../kern/ke[24;1Hrn_sig.c[5C[66C
+
+
+[2Acc  -c -O -I. -I../.. -I../../sys -DGENERICISA -Di386 -DUCONSOLE -DXSERVER -DTCP[23;1H_COMPAT_42 -DCOMPAT_43 -DNFS -DISOFS -DINET -DKERNEL -Di386 -DNPX  ../../kern/ke[24;1Hrn_subr.c
+
+
+[2Acc  -c -O -I. -I../.. -I../../sys -DGENERICISA -Di386 -DUCONSOLE -DXSERVER -DTCP[23;1H_COMPAT_42 -DCOMPAT_43 -DNFS -DISOFS -DINET -DKERNEL -Di386 -DNPX  ../../kern/ke[24;1Hrn_synch.c[69C
+
+
+[2Acc  -c -O -I. -I../.. -I../../sys -DGENERICISA -Di386 -DUCONSOLE -DXSERVER -DTCP[23;1H_COMPAT_42 -DCOMPAT_43 -DNFS -DISOFS -DINET -DKERNEL -Di386 -DNPX  ../../kern/ke[24;1Hrn_time.c 
+
+
+[2Acc  -c -O -I. -I../.. -I../../sys -DGENERICISA -Di386 -DUCONSOLE -DXSERVER -DTCP[23;1H_COMPAT_42 -DCOMPAT_43 -DNFS -DISOFS -DINET -DKERNEL -Di386 -DNPX  ../../kern/ke[24;1Hrn_xxx.c[71C
+
+
+[2Acc  -c -O -I. -I../.. -I../../sys -DGENERICISA -Di386 -DUCONSOLE -DXSERVER -DTCP[23;1H_COMPAT_42 -DCOMPAT_43 -DNFS -DISOFS -DINET -DKERNEL -Di386 -DNPX  ../../kern/sp[24;1Hec_vnops.c
+
+
+[2Acc  -c -O -I. -I../.. -I../../sys -DGENERICISA -Di386 -DUCONSOLE -DXSERVER -DTCP[23;1H_COMPAT_42 -DCOMPAT_43 -DNFS -DISOFS -DINET -DKERNEL -Di386 -DNPX  ../../kern/su[24;1Hbr_log.c[71C
+
+
+[2Acc  -c -O -I. -I../.. -I../../sys -DGENERICISA -Di386 -DUCONSOLE -DXSERVER -DTCP[23;1H_COMPAT_42 -DCOMPAT_43 -DNFS -DISOFS -DINET -DKERNEL -Di386 -DNPX  ../../kern/su[24;1Hbr_prf.c
+
+
+
+
+
+[5Acc  -c -O -I. -I../.. -I../../sys -DGENERICISA -Di386 -DUCONSOLE -DXSERVER -DTCP[20;1H_COMPAT_42 -DCOMPAT_43 -DNFS -DISOFS -DINET -DKERNEL -Di386 -DNPX  ../../kern/su[21;1Hbr_rlist.c
+cc  -c -O -I. -I../.. -I../../sys -DGENERICISA -Di386 -DUCONSOLE -DXSERVER -DTCP[23;1H_COMPAT_42 -DCOMPAT_43 -DNFS -DISOFS -DINET -DKERNEL -Di386 -DNPX  ../../kern/su[24;1Hbr_xxx.c[71C
+
+
+[2Acc  -c -O -I. -I../.. -I../../sys -DGENERICISA -Di386 -DUCONSOLE -DXSERVER -DTCP[23;1H_COMPAT_42 -DCOMPAT_43 -DNFS -DISOFS -DINET -DKERNEL -Di386 -DNPX  ../../kern/sy[24;1Hs_generic.c[68C
+
+
+[2Acc  -c -O -I. -I../.. -I../../sys -DGENERICISA -Di386 -DUCONSOLE -DXSERVER -DTCP[23;1H_COMPAT_42 -DCOMPAT_43 -DNFS -DISOFS -DINET -DKERNEL -Di386 -DNPX  ../../kern/sy[24;1Hs_process.c
+
+
+[2Acc  -c -O -I. -I../.. -I../../sys -DGENERICISA -Di386 -DUCONSOLE -DXSERVER -DTCP[23;1H_COMPAT_42 -DCOMPAT_43 -DNFS -DISOFS -DINET -DKERNEL -Di386 -DNPX  ../../kern/sy[24;1Hs_socket.c[69C
+
+
+[2Acc  -c -O -I. -I../.. -I../../sys -DGENERICISA -Di386 -DUCONSOLE -DXSERVER -DTCP[23;1H_COMPAT_42 -DCOMPAT_43 -DNFS -DISOFS -DINET -DKERNEL -Di386 -DNPX  ../../kern/tt[24;1Hy.c[7C
+
+
+
+
+
+
+
+
+[8Acc  -c -O -I. -I../.. -I../../sys -DGENERICISA -Di386 -DUCONSOLE -DXSERVER -DTCP[17;1H_COMPAT_42 -DCOMPAT_43 -DNFS -DISOFS -DINET -DKERNEL -Di386 -DNPX  ../../kern/tt[18;1Hy_compat.c
+cc  -c -O -I. -I../.. -I../../sys -DGENERICISA -Di386 -DUCONSOLE -DXSERVER -DTCP[20;1H_COMPAT_42 -DCOMPAT_43 -DNFS -DISOFS -DINET -DKERNEL -Di386 -DNPX  ../../kern/tt[21;1Hy_conf.c
+cc  -c -O -I. -I../.. -I../../sys -DGENERICISA -Di386 -DUCONSOLE -DXSERVER -DTCP[23;1H_COMPAT_42 -DCOMPAT_43 -DNFS -DISOFS -DINET -DKERNEL -Di386 -DNPX  ../../kern/tt[24;1Hy_pty.c[72C
+
+
+
+
+
+[5Acc  -c -O -I. -I../.. -I../../sys -DGENERICISA -Di386 -DUCONSOLE -DXSERVER -DTCP[20;1H_COMPAT_42 -DCOMPAT_43 -DNFS -DISOFS -DINET -DKERNEL -Di386 -DNPX  ../../kern/tt[21;1Hy_ring.c
+cc  -c -O -I. -I../.. -I../../sys -DGENERICISA -Di386 -DUCONSOLE -DXSERVER -DTCP[23;1H_COMPAT_42 -DCOMPAT_43 -DNFS -DISOFS -DINET -DKERNEL -Di386 -DNPX  ../../kern/tt[24;1Hy_tty.c[72C
+
+
+[2Acc  -c -O -I. -I../.. -I../../sys -DGENERICISA -Di386 -DUCONSOLE -DXSERVER -DTCP[23;1H_COMPAT_42 -DCOMPAT_43 -DNFS -DISOFS -DINET -DKERNEL -Di386 -DNPX  ../../kern/ui[24;1Hpc_domain.c
+
+
+[2Acc  -c -O -I. -I../.. -I../../sys -DGENERICISA -Di386 -DUCONSOLE -DXSERVER -DTCP[23;1H_COMPAT_42 -DCOMPAT_43 -DNFS -DISOFS -DINET -DKERNEL -Di386 -DNPX  ../../kern/ui[24;1Hpc_mbuf.c[70C
+
+
+[2Acc  -c -O -I. -I../.. -I../../sys -DGENERICISA -Di386 -DUCONSOLE -DXSERVER -DTCP[23;1H_COMPAT_42 -DCOMPAT_43 -DNFS -DISOFS -DINET -DKERNEL -Di386 -DNPX  ../../kern/ui[24;1Hpc_proto.c[69C
+
+
+[2Acc  -c -O -I. -I../.. -I../../sys -DGENERICISA -Di386 -DUCONSOLE -DXSERVER -DTCP[23;1H_COMPAT_42 -DCOMPAT_43 -DNFS -DISOFS -DINET -DKERNEL -Di386 -DNPX  ../../kern/ui[24;1Hpc_socket.c[68C
+
+
+[2Acc  -c -O -I. -I../.. -I../../sys -DGENERICISA -Di386 -DUCONSOLE -DXSERVER -DTCP[23;1H_COMPAT_42 -DCOMPAT_43 -DNFS -DISOFS -DINET -DKERNEL -Di386 -DNPX  ../../kern/ui[24;1Hpc_socket2.c[67C
+
+
+[2Acc  -c -O -I. -I../.. -I../../sys -DGENERICISA -Di386 -DUCONSOLE -DXSERVER -DTCP[23;1H_COMPAT_42 -DCOMPAT_43 -DNFS -DISOFS -DINET -DKERNEL -Di386 -DNPX  ../../kern/ui[24;1Hpc_syscalls.c[66C
+
+
+[2Acc  -c -O -I. -I../.. -I../../sys -DGENERICISA -Di386 -DUCONSOLE -DXSERVER -DTCP[23;1H_COMPAT_42 -DCOMPAT_43 -DNFS -DISOFS -DINET -DKERNEL -Di386 -DNPX  ../../kern/ui[24;1Hpc_usrreq.c  [66C
+
+
+[2Acc  -c -O -I. -I../.. -I../../sys -DGENERICISA -Di386 -DUCONSOLE -DXSERVER -DTCP[23;1H_COMPAT_42 -DCOMPAT_43 -DNFS -DISOFS -DINET -DKERNEL -Di386 -DNPX  ../../kern/vf[24;1Hs__bio.c   [68C
+
+
+[2Acc  -c -O -I. -I../.. -I../../sys -DGENERICISA -Di386 -DUCONSOLE -DXSERVER -DTCP[23;1H_COMPAT_42 -DCOMPAT_43 -DNFS -DISOFS -DINET -DKERNEL -Di386 -DNPX  ../../kern/vf[24;1Hs_cache.c
+
+
+
+
+
+[5Acc  -c -O -I. -I../.. -I../../sys -DGENERICISA -Di386 -DUCONSOLE -DXSERVER -DTCP[20;1H_COMPAT_42 -DCOMPAT_43 -DNFS -DISOFS -DINET -DKERNEL -Di386 -DNPX  ../../kern/vf[21;1Hs_conf.c
+cc  -c -O -I. -I../.. -I../../sys -DGENERICISA -Di386 -DUCONSOLE -DXSERVER -DTCP[23;1H_COMPAT_42 -DCOMPAT_43 -DNFS -DISOFS -DINET -DKERNEL -Di386 -DNPX  ../../kern/vf[24;1Hs_lookup.c[69C
+
+
+[2Acc  -c -O -I. -I../.. -I../../sys -DGENERICISA -Di386 -DUCONSOLE -DXSERVER -DTCP[23;1H_COMPAT_42 -DCOMPAT_43 -DNFS -DISOFS -DINET -DKERNEL -Di386 -DNPX  ../../kern/vf[24;1Hs_subr.c[71C
+
+
+[2Acc  -c -O -I. -I../.. -I../../sys -DGENERICISA -Di386 -DUCONSOLE -DXSERVER -DTCP[23;1H_COMPAT_42 -DCOMPAT_43 -DNFS -DISOFS -DINET -DKERNEL -Di386 -DNPX  ../../kern/vf[24;1Hs_syscalls.c[67C
+
+
+
+
+
+
+
+
+[8Acc  -c -O -I. -I../.. -I../../sys -DGENERICISA -Di386 -DUCONSOLE -DXSERVER -DTCP[17;1H_COMPAT_42 -DCOMPAT_43 -DNFS -DISOFS -DINET -DKERNEL -Di386 -DNPX  ../../kern/vf[18;1Hs_vnops.c
+cc  -c -O -I. -I../.. -I../../sys -DGENERICISA -Di386 -DUCONSOLE -DXSERVER -DTCP[20;1H_COMPAT_42 -DCOMPAT_43 -DNFS -DISOFS -DINET -DKERNEL -Di386 -DNPX  ../../net/af.[21;1Hc
+cc  -c -O -I. -I../.. -I../../sys -DGENERICISA -Di386 -DUCONSOLE -DXSERVER -DTCP[23;1H_COMPAT_42 -DCOMPAT_43 -DNFS -DISOFS -DINET -DKERNEL -Di386 -DNPX  ../../net/if.[24;1Hc[24;13H
+
+
+
+
+
+
+
+
+[8Acc  -c -O -I. -I../.. -I../../sys -DGENERICISA -Di386 -DUCONSOLE -DXSERVER -DTCP[17;1H_COMPAT_42 -DCOMPAT_43 -DNFS -DISOFS -DINET -DKERNEL -Di386 -DNPX  ../../net/if_[18;1Hethersubr.c
+cc  -c -O -I. -I../.. -I../../sys -DGENERICISA -Di386 -DUCONSOLE -DXSERVER -DTCP[20;1H_COMPAT_42 -DCOMPAT_43 -DNFS -DISOFS -DINET -DKERNEL -Di386 -DNPX  ../../net/if_[21;1Hloop.c
+cc  -c -O -I. -I../.. -I../../sys -DGENERICISA -Di386 -DUCONSOLE -DXSERVER -DTCP[23;1H_COMPAT_42 -DCOMPAT_43 -DNFS -DISOFS -DINET -DKERNEL -Di386 -DNPX  ../../net/if_[24;1Hsl.c[75C
+
+
+[2Acc  -c -O -I. -I../.. -I../../sys -DGENERICISA -Di386 -DUCONSOLE -DXSERVER -DTCP[23;1H_COMPAT_42 -DCOMPAT_43 -DNFS -DISOFS -DINET -DKERNEL -Di386 -DNPX  ../../net/rad[24;1Hix.c[77C
+
+
+[2Acc  -c -O -I. -I../.. -I../../sys -DGENERICISA -Di386 -DUCONSOLE -DXSERVER -DTCP[23;1H_COMPAT_42 -DCOMPAT_43 -DNFS -DISOFS -DINET -DKERNEL -Di386 -DNPX  ../../net/raw[24;1H_cb.c
+
+
+[2Acc  -c -O -I. -I../.. -I../../sys -DGENERICISA -Di386 -DUCONSOLE -DXSERVER -DTCP[23;1H_COMPAT_42 -DCOMPAT_43 -DNFS -DISOFS -DINET -DKERNEL -Di386 -DNPX  ../../net/raw[24;1H_usrreq.c[70C
+
+
+[2Acc  -c -O -I. -I../.. -I../../sys -DGENERICISA -Di386 -DUCONSOLE -DXSERVER -DTCP[23;1H_COMPAT_42 -DCOMPAT_43 -DNFS -DISOFS -DINET -DKERNEL -Di386 -DNPX  ../../net/rou[24;1Hte.c[5C
+
+
+[2Acc  -c -O -I. -I../.. -I../../sys -DGENERICISA -Di386 -DUCONSOLE -DXSERVER -DTCP[23;1H_COMPAT_42 -DCOMPAT_43 -DNFS -DISOFS -DINET -DKERNEL -Di386 -DNPX  ../../net/rts[24;1Hock.c[74C
+
+
+[2Acc  -c -O -I. -I../.. -I../../sys -DGENERICISA -Di386 -DUCONSOLE -DXSERVER -DTCP[23;1H_COMPAT_42 -DCOMPAT_43 -DNFS -DISOFS -DINET -DKERNEL -Di386 -DNPX  ../../net/slc[24;1Hompress.c[70C
+
+
+[2Acc  -c -O -I. -I../.. -I../../sys -DGENERICISA -Di386 -DUCONSOLE -DXSERVER -DTCP[23;1H_COMPAT_42 -DCOMPAT_43 -DNFS -DISOFS -DINET -DKERNEL -Di386 -DNPX  ../../netinet[24;1H/if_ether.c[68C
+
+
+[2Acc  -c -O -I. -I../.. -I../../sys -DGENERICISA -Di386 -DUCONSOLE -DXSERVER -DTCP[23;1H_COMPAT_42 -DCOMPAT_43 -DNFS -DISOFS -DINET -DKERNEL -Di386 -DNPX  ../../netinet[24;1H/in.c[6C
+
+
+[2Acc  -c -O -I. -I../.. -I../../sys -DGENERICISA -Di386 -DUCONSOLE -DXSERVER -DTCP[23;1H_COMPAT_42 -DCOMPAT_43 -DNFS -DISOFS -DINET -DKERNEL -Di386 -DNPX  ../../netinet[24;1H/in_pcb.c[70C
+
+
+[2Acc  -c -O -I. -I../.. -I../../sys -DGENERICISA -Di386 -DUCONSOLE -DXSERVER -DTCP[23;1H_COMPAT_42 -DCOMPAT_43 -DNFS -DISOFS -DINET -DKERNEL -Di386 -DNPX  ../../netinet[24;1H/in_proto.c[68C
+
+
+[2Acc  -c -O -I. -I../.. -I../../sys -DGENERICISA -Di386 -DUCONSOLE -DXSERVER -DTCP[23;1H_COMPAT_42 -DCOMPAT_43 -DNFS -DISOFS -DINET -DKERNEL -Di386 -DNPX  ../../netinet[24;1H/ip_icmp.c 
+
+
+[2Acc  -c -O -I. -I../.. -I../../sys -DGENERICISA -Di386 -DUCONSOLE -DXSERVER -DTCP[23;1H_COMPAT_42 -DCOMPAT_43 -DNFS -DISOFS -DINET -DKERNEL -Di386 -DNPX  ../../netinet[24;1H/ip_input.c[68C
+
+
+[2Acc  -c -O -I. -I../.. -I../../sys -DGENERICISA -Di386 -DUCONSOLE -DXSERVER -DTCP[23;1H_COMPAT_42 -DCOMPAT_43 -DNFS -DISOFS -DINET -DKERNEL -Di386 -DNPX  ../../netinet[24;1H/ip_output.c
+
+
+[2Acc  -c -O -I. -I../.. -I../../sys -DGENERICISA -Di386 -DUCONSOLE -DXSERVER -DTCP[23;1H_COMPAT_42 -DCOMPAT_43 -DNFS -DISOFS -DINET -DKERNEL -Di386 -DNPX  ../../netinet[24;1H/raw_ip.c[70C
+
+
+
+
+
+
+
+
+[8Acc  -c -O -I. -I../.. -I../../sys -DGENERICISA -Di386 -DUCONSOLE -DXSERVER -DTCP[17;1H_COMPAT_42 -DCOMPAT_43 -DNFS -DISOFS -DINET -DKERNEL -Di386 -DNPX  ../../netinet[18;1H/tcp_debug.c
+cc  -c -O -I. -I../.. -I../../sys -DGENERICISA -Di386 -DUCONSOLE -DXSERVER -DTCP[20;1H_COMPAT_42 -DCOMPAT_43 -DNFS -DISOFS -DINET -DKERNEL -Di386 -DNPX  ../../netinet[21;1H/tcp_input.c
+cc  -c -O -I. -I../.. -I../../sys -DGENERICISA -Di386 -DUCONSOLE -DXSERVER -DTCP[23;1H_COMPAT_42 -DCOMPAT_43 -DNFS -DISOFS -DINET -DKERNEL -Di386 -DNPX  ../../netinet[24;1H/tcp_output.c
+
+
+[2Acc  -c -O -I. -I../.. -I../../sys -DGENERICISA -Di386 -DUCONSOLE -DXSERVER -DTCP[23;1H_COMPAT_42 -DCOMPAT_43 -DNFS -DISOFS -DINET -DKERNEL -Di386 -DNPX  ../../netinet[24;1H/tcp_subr.c[68C
+
+
+[2Acc  -c -O -I. -I../.. -I../../sys -DGENERICISA -Di386 -DUCONSOLE -DXSERVER -DTCP[23;1H_COMPAT_42 -DCOMPAT_43 -DNFS -DISOFS -DINET -DKERNEL -Di386 -DNPX  ../../netinet[24;1H/tcp_timer.c
+
+
+[2Acc  -c -O -I. -I../.. -I../../sys -DGENERICISA -Di386 -DUCONSOLE -DXSERVER -DTCP[23;1H_COMPAT_42 -DCOMPAT_43 -DNFS -DISOFS -DINET -DKERNEL -Di386 -DNPX  ../../netinet[24;1H/tcp_usrreq.c[66C
+
+
+[2Acc  -c -O -I. -I../.. -I../../sys -DGENERICISA -Di386 -DUCONSOLE -DXSERVER -DTCP[23;1H_COMPAT_42 -DCOMPAT_43 -DNFS -DISOFS -DINET -DKERNEL -Di386 -DNPX  ../../netinet[24;1H/udp_usrreq.c/ud
+
+
+[2Acc  -c -O -I. -I../.. -I../../sys -DGENERICISA -Di386 -DUCONSOLE -DXSERVER -DTCP[23;1H_COMPAT_42 -DCOMPAT_43 -DNFS -DISOFS -DINET -DKERNEL -Di386 -DNPX  ../../nfs/nfs[24;1H_bio.c[73C
+
+
+[2Acc  -c -O -I. -I../.. -I../../sys -DGENERICISA -Di386 -DUCONSOLE -DXSERVER -DTCP[23;1H_COMPAT_42 -DCOMPAT_43 -DNFS -DISOFS -DINET -DKERNEL -Di386 -DNPX  ../../nfs/nfs[24;1H_node.c[72C
+
+
+[2Acc  -c -O -I. -I../.. -I../../sys -DGENERICISA -Di386 -DUCONSOLE -DXSERVER -DTCP[23;1H_COMPAT_42 -DCOMPAT_43 -DNFS -DISOFS -DINET -DKERNEL -Di386 -DNPX  ../../nfs/nfs[24;1H_serv.c[74C
+
+
+[2Acc  -c -O -I. -I../.. -I../../sys -DGENERICISA -Di386 -DUCONSOLE -DXSERVER -DTCP[23;1H_COMPAT_42 -DCOMPAT_43 -DNFS -DISOFS -DINET -DKERNEL -Di386 -DNPX  ../../nfs/nfs[24;1H_socket.c[70C
+
+
+[2Acc  -c -O -I. -I../.. -I../../sys -DGENERICISA -Di386 -DUCONSOLE -DXSERVER -DTCP[23;1H_COMPAT_42 -DCOMPAT_43 -DNFS -DISOFS -DINET -DKERNEL -Di386 -DNPX  ../../nfs/nfs[24;1H_srvcache.c[68C
+
+
+[2Acc  -c -O -I. -I../.. -I../../sys -DGENERICISA -Di386 -DUCONSOLE -DXSERVER -DTCP[23;1H_COMPAT_42 -DCOMPAT_43 -DNFS -DISOFS -DINET -DKERNEL -Di386 -DNPX  ../../nfs/nfs[24;1H_subs.c[72C
+
+
+[2Acc  -c -O -I. -I../.. -I../../sys -DGENERICISA -Di386 -DUCONSOLE -DXSERVER -DTCP[23;1H_COMPAT_42 -DCOMPAT_43 -DNFS -DISOFS -DINET -DKERNEL -Di386 -DNPX  ../../nfs/nfs[24;1H_syscalls.c[68C
+
+
+[2Acc  -c -O -I. -I../.. -I../../sys -DGENERICISA -Di386 -DUCONSOLE -DXSERVER -DTCP[23;1H_COMPAT_42 -DCOMPAT_43 -DNFS -DISOFS -DINET -DKERNEL -Di386 -DNPX  ../../nfs/nfs[24;1H_vfsops.c  [68C
+
+
+[2Acc  -c -O -I. -I../.. -I../../sys -DGENERICISA -Di386 -DUCONSOLE -DXSERVER -DTCP[23;1H_COMPAT_42 -DCOMPAT_43 -DNFS -DISOFS -DINET -DKERNEL -Di386 -DNPX  ../../nfs/nfs[24;1H_vnops.c [70C
+
+
+[2Acc  -c -O -I. -I../.. -I../../sys -DGENERICISA -Di386 -DUCONSOLE -DXSERVER -DTCP[23;1H_COMPAT_42 -DCOMPAT_43 -DNFS -DISOFS -DINET -DKERNEL -Di386 -DNPX  ../../ufs/ufs[24;1H_alloc.c[71C
+
+
+[2Acc  -c -O -I. -I../.. -I../../sys -DGENERICISA -Di386 -DUCONSOLE -DXSERVER -DTCP[23;1H_COMPAT_42 -DCOMPAT_43 -DNFS -DISOFS -DINET -DKERNEL -Di386 -DNPX  ../../ufs/ufs[24;1H_bmap.c[72C
+
+
+[2Acc  -c -O -I. -I../.. -I../../sys -DGENERICISA -Di386 -DUCONSOLE -DXSERVER -DTCP[23;1H_COMPAT_42 -DCOMPAT_43 -DNFS -DISOFS -DINET -DKERNEL -Di386 -DNPX  ../../ufs/ufs[24;1H_disksubr.c
+
+
+[2Acc  -c -O -I. -I../.. -I../../sys -DGENERICISA -Di386 -DUCONSOLE -DXSERVER -DTCP[23;1H_COMPAT_42 -DCOMPAT_43 -DNFS -DISOFS -DINET -DKERNEL -Di386 -DNPX  ../../ufs/ufs[24;1H_inode.c[71C
+
+
+[2Acc  -c -O -I. -I../.. -I../../sys -DGENERICISA -Di386 -DUCONSOLE -DXSERVER -DTCP[23;1H_COMPAT_42 -DCOMPAT_43 -DNFS -DISOFS -DINET -DKERNEL -Di386 -DNPX  ../../ufs/ufs[24;1H_lockf.c[71C
+
+
+[2Acc  -c -O -I. -I../.. -I../../sys -DGENERICISA -Di386 -DUCONSOLE -DXSERVER -DTCP[23;1H_COMPAT_42 -DCOMPAT_43 -DNFS -DISOFS -DINET -DKERNEL -Di386 -DNPX  ../../ufs/ufs[24;1H_lookup.c[70C
+
+
+
+
+
+[5Acc  -c -O -I. -I../.. -I../../sys -DGENERICISA -Di386 -DUCONSOLE -DXSERVER -DTCP[20;1H_COMPAT_42 -DCOMPAT_43 -DNFS -DISOFS -DINET -DKERNEL -Di386 -DNPX  ../../ufs/ufs[21;1H_subr.c
+cc  -c -O -I. -I../.. -I../../sys -DGENERICISA -Di386 -DUCONSOLE -DXSERVER -DTCP[23;1H_COMPAT_42 -DCOMPAT_43 -DNFS -DISOFS -DINET -DKERNEL -Di386 -DNPX  ../../ufs/ufs[24;1H_tables.c
+
+
+[2Acc  -c -O -I. -I../.. -I../../sys -DGENERICISA -Di386 -DUCONSOLE -DXSERVER -DTCP[23;1H_COMPAT_42 -DCOMPAT_43 -DNFS -DISOFS -DINET -DKERNEL -Di386 -DNPX  ../../ufs/ufs[24;1H_vfsops.c[70C
+
+
+[2Acc  -c -O -I. -I../.. -I../../sys -DGENERICISA -Di386 -DUCONSOLE -DXSERVER -DTCP[23;1H_COMPAT_42 -DCOMPAT_43 -DNFS -DISOFS -DINET -DKERNEL -Di386 -DNPX  ../../ufs/ufs[24;1H_vnops.c[71C
+
+
+[2Acc  -c -O -I. -I../.. -I../../sys -DGENERICISA -Di386 -DUCONSOLE -DXSERVER -DTCP[23;1H_COMPAT_42 -DCOMPAT_43 -DNFS -DISOFS -DINET -DKERNEL -Di386 -DNPX  ../../vm/devi[24;1Hce_pager.c
+
+
+
+
+
+[5Acc  -c -O -I. -I../.. -I../../sys -DGENERICISA -Di386 -DUCONSOLE -DXSERVER -DTCP[20;1H_COMPAT_42 -DCOMPAT_43 -DNFS -DISOFS -DINET -DKERNEL -Di386 -DNPX  ../../vm/kern[21;1H_lock.c
+cc  -c -O -I. -I../.. -I../../sys -DGENERICISA -Di386 -DUCONSOLE -DXSERVER -DTCP[23;1H_COMPAT_42 -DCOMPAT_43 -DNFS -DISOFS -DINET -DKERNEL -Di386 -DNPX  ../../vm/swap[24;1H_pager.c[71C
+
+
+[2Acc  -c -O -I. -I../.. -I../../sys -DGENERICISA -Di386 -DUCONSOLE -DXSERVER -DTCP[23;1H_COMPAT_42 -DCOMPAT_43 -DNFS -DISOFS -DINET -DKERNEL -Di386 -DNPX  ../../vm/vm_f[24;1Hault.c[73C
+
+
+[2Acc  -c -O -I. -I../.. -I../../sys -DGENERICISA -Di386 -DUCONSOLE -DXSERVER -DTCP[23;1H_COMPAT_42 -DCOMPAT_43 -DNFS -DISOFS -DINET -DKERNEL -Di386 -DNPX  ../../vm/vm_g[24;1Hlue.c[74C
+
+
+
+
+
+[5Acc  -c -O -I. -I../.. -I../../sys -DGENERICISA -Di386 -DUCONSOLE -DXSERVER -DTCP[20;1H_COMPAT_42 -DCOMPAT_43 -DNFS -DISOFS -DINET -DKERNEL -Di386 -DNPX  ../../vm/vm_i[21;1Hnit.c
+cc  -c -O -I. -I../.. -I../../sys -DGENERICISA -Di386 -DUCONSOLE -DXSERVER -DTCP[23;1H_COMPAT_42 -DCOMPAT_43 -DNFS -DISOFS -DINET -DKERNEL -Di386 -DNPX  ../../vm/vm_k[24;1Hern.c
+
+
+[2Acc  -c -O -I. -I../.. -I../../sys -DGENERICISA -Di386 -DUCONSOLE -DXSERVER -DTCP[23;1H_COMPAT_42 -DCOMPAT_43 -DNFS -DISOFS -DINET -DKERNEL -Di386 -DNPX  ../../vm/vm_m[24;1Hap.c[75C
+
+
+[2Acc  -c -O -I. -I../.. -I../../sys -DGENERICISA -Di386 -DUCONSOLE -DXSERVER -DTCP[23;1H_COMPAT_42 -DCOMPAT_43 -DNFS -DISOFS -DINET -DKERNEL -Di386 -DNPX  ../../vm/vm_m[24;1Heter.c
+
+
+[2Acc  -c -O -I. -I../.. -I../../sys -DGENERICISA -Di386 -DUCONSOLE -DXSERVER -DTCP[23;1H_COMPAT_42 -DCOMPAT_43 -DNFS -DISOFS -DINET -DKERNEL -Di386 -DNPX  ../../vm/vm_m[24;1Hmap.c[74C
+
+
+[2Acc  -c -O -I. -I../.. -I../../sys -DGENERICISA -Di386 -DUCONSOLE -DXSERVER -DTCP[23;1H_COMPAT_42 -DCOMPAT_43 -DNFS -DISOFS -DINET -DKERNEL -Di386 -DNPX  ../../vm/vm_o[24;1Hbject.c[72C
+
+
+[2Acc  -c -O -I. -I../.. -I../../sys -DGENERICISA -Di386 -DUCONSOLE -DXSERVER -DTCP[23;1H_COMPAT_42 -DCOMPAT_43 -DNFS -DISOFS -DINET -DKERNEL -Di386 -DNPX  ../../vm/vm_p[24;1Hage.c[74C
+
+
+[2Acc  -c -O -I. -I../.. -I../../sys -DGENERICISA -Di386 -DUCONSOLE -DXSERVER -DTCP[23;1H_COMPAT_42 -DCOMPAT_43 -DNFS -DISOFS -DINET -DKERNEL -Di386 -DNPX  ../../vm/vm_p[24;1Hageout.c
+
+
+[2Acc  -c -O -I. -I../.. -I../../sys -DGENERICISA -Di386 -DUCONSOLE -DXSERVER -DTCP[23;1H_COMPAT_42 -DCOMPAT_43 -DNFS -DISOFS -DINET -DKERNEL -Di386 -DNPX  ../../vm/vm_p[24;1Hager.c[73C
+
+
+[2Acc  -c -O -I. -I../.. -I../../sys -DGENERICISA -Di386 -DUCONSOLE -DXSERVER -DTCP[23;1H_COMPAT_42 -DCOMPAT_43 -DNFS -DISOFS -DINET -DKERNEL -Di386 -DNPX  ../../vm/vm_s[24;1Hwap.c 
+
+
+[2Acc  -c -O -I. -I../.. -I../../sys -DGENERICISA -Di386 -DUCONSOLE -DXSERVER -DTCP[23;1H_COMPAT_42 -DCOMPAT_43 -DNFS -DISOFS -DINET -DKERNEL -Di386 -DNPX  ../../vm/vm_u[24;1Hnix.c[74C
+
+
+[2Acc  -c -O -I. -I../.. -I../../sys -DGENERICISA -Di386 -DUCONSOLE -DXSERVER -DTCP[23;1H_COMPAT_42 -DCOMPAT_43 -DNFS -DISOFS -DINET -DKERNEL -Di386 -DNPX  ../../vm/vm_u[24;1Hser.c
+
+
+
+
+
+[5Acc  -c -O -I. -I../.. -I../../sys -DGENERICISA -Di386 -DUCONSOLE -DXSERVER -DTCP[20;1H_COMPAT_42 -DCOMPAT_43 -DNFS -DISOFS -DINET -DKERNEL -Di386 -DNPX  ../../vm/vnod[21;1He_pager.c
+cc  -c -O -I. -I../.. -I../../sys -DGENERICISA -Di386 -DUCONSOLE -DXSERVER -DTCP[23;1H_COMPAT_42 -DCOMPAT_43 -DNFS -DISOFS -DINET -DKERNEL -Di386 -DNPX  ../../i386/i3[24;1H86/autoconf.c[66C
+
+
+[2Acc  -c -O -I. -I../.. -I../../sys -DGENERICISA -Di386 -DUCONSOLE -DXSERVER -DTCP[23;1H_COMPAT_42 -DCOMPAT_43 -DNFS -DISOFS -DINET -DKERNEL -Di386 -DNPX  ../../i386/i3[24;1H86/cons.c    
+
+
+[2Acc  -c -O -I. -I../.. -I../../sys -DGENERICISA -Di386 -DUCONSOLE -DXSERVER -DTCP[23;1H_COMPAT_42 -DCOMPAT_43 -DNFS -DISOFS -DINET -DKERNEL -Di386 -DNPX  ../../i386/i3[24;1H86/in_cksum.c[66C
+
+
+[2Acc  -c -O -I. -I../.. -I../../sys -DGENERICISA -Di386 -DUCONSOLE -DXSERVER -DTCP[23;1H_COMPAT_42 -DCOMPAT_43 -DNFS -DISOFS -DINET -DKERNEL -Di386 -DNPX  -DTIMEZONE=48[24;1H0 -DDST=1 -DMAXUSERS=10 ../../i386/i386/machdep.c[30C
+
+
+[2Acc  -c -O -I. -I../.. -I../../sys -DGENERICISA -Di386 -DUCONSOLE -DXSERVER -DTCP[23;1H_COMPAT_42 -DCOMPAT_43 -DNFS -DISOFS -DINET -DKERNEL -Di386 -DNPX  ../../i386/i3[24;1H86/math_emulate.c[24;50H[30C
+
+
+
+
+
+[5Acc  -c -O -I. -I../.. -I../../sys -DGENERICISA -Di386 -DUCONSOLE -DXSERVER -DTCP[20;1H_COMPAT_42 -DCOMPAT_43 -DNFS -DISOFS -DINET -DKERNEL -Di386 -DNPX  ../../i386/i3[21;1H86/mem.c
+cpp -I. -DLOCORE -I. -I../.. -I../../sys -DGENERICISA -Di386 -DUCONSOLE -DXSERVE[23;1HR -DTCP_COMPAT_42 -DCOMPAT_43 -DNFS -DISOFS -DINET -DKERNEL -Di386 -DNPX ../../i[24;1H386/i386/microtime.s | as  -o microtime.o[38C
+
+
+[2Acc  -c -O -I. -I../.. -I../../sys -DGENERICISA -Di386 -DUCONSOLE -DXSERVER -DTCP[23;1H_COMPAT_42 -DCOMPAT_43 -DNFS -DISOFS -DINET -DKERNEL -Di386 -DNPX  ../../i386/i3[24;1H86/pmap.c[24;42H[38C
+
+
+
+
+
+[5Acc  -c -O -I. -I../.. -I../../sys -DGENERICISA -Di386 -DUCONSOLE -DXSERVER -DTCP[20;1H_COMPAT_42 -DCOMPAT_43 -DNFS -DISOFS -DINET -DKERNEL -Di386 -DNPX  ../../i386/i3[21;1H86/sys_machdep.c
+cc  -c -O -I. -I../.. -I../../sys -DGENERICISA -Di386 -DUCONSOLE -DXSERVER -DTCP[23;1H_COMPAT_42 -DCOMPAT_43 -DNFS -DISOFS -DINET -DKERNEL -Di386 -DNPX  ../../i386/i3[24;1H86/trap.c
+
+
+[2Acc  -c -O -I. -I../.. -I../../sys -DGENERICISA -Di386 -DUCONSOLE -DXSERVER -DTCP[23;1H_COMPAT_42 -DCOMPAT_43 -DNFS -DISOFS -DINET -DKERNEL -Di386 -DNPX  ../../i386/i3[24;1H86/vm_machdep.c[64C
+
+
+[2Acc  -c -O -I. -I../.. -I../../sys -DGENERICISA -Di386 -DUCONSOLE -DXSERVER -DTCP[23;1H_COMPAT_42 -DCOMPAT_43 -DNFS -DISOFS -DINET -DKERNEL -Di386 -DNPX  ../../i386/is[24;1Ha/aha1542.c[68C
+
+
+[2Acc  -c -O -I. -I../.. -I../../sys -DGENERICISA -Di386 -DUCONSOLE -DXSERVER -DTCP[23;1H_COMPAT_42 -DCOMPAT_43 -DNFS -DISOFS -DINET -DKERNEL -Di386 -DNPX  ../../i386/is[24;1Ha/aha1742.c[68C
+
+
+[2Acc  -c -O -I. -I../.. -I../../sys -DGENERICISA -Di386 -DUCONSOLE -DXSERVER -DTCP[23;1H_COMPAT_42 -DCOMPAT_43 -DNFS -DISOFS -DINET -DKERNEL -Di386 -DNPX  ../../i386/is[24;1Ha/clock.c[70C
+
+
+[2Acc  -c -O -I. -I../.. -I../../sys -DGENERICISA -Di386 -DUCONSOLE -DXSERVER -DTCP[23;1H_COMPAT_42 -DCOMPAT_43 -DNFS -DISOFS -DINET -DKERNEL -Di386 -DNPX  ../../i386/is[24;1Ha/com.c  [70C
+
+
+[2Acc  -c -O -I. -I../.. -I../../sys -DGENERICISA -Di386 -DUCONSOLE -DXSERVER -DTCP[23;1H_COMPAT_42 -DCOMPAT_43 -DNFS -DISOFS -DINET -DKERNEL -Di386 -DNPX  ../../i386/is[24;1Ha/fd.c 
+
+
+[2Acc  -c -O -I. -I../.. -I../../sys -DGENERICISA -Di386 -DUCONSOLE -DXSERVER -DTCP[23;1H_COMPAT_42 -DCOMPAT_43 -DNFS -DISOFS -DINET -DKERNEL -Di386 -DNPX  ../../i386/is[24;1Ha/if_ec.c[70C
+
+
+[2Acc  -c -O -I. -I../.. -I../../sys -DGENERICISA -Di386 -DUCONSOLE -DXSERVER -DTCP[23;1H_COMPAT_42 -DCOMPAT_43 -DNFS -DISOFS -DINET -DKERNEL -Di386 -DNPX  ../../i386/is[24;1Ha/if_is.c[70C
+
+
+[2Acc  -c -O -I. -I../.. -I../../sys -DGENERICISA -Di386 -DUCONSOLE -DXSERVER -DTCP[23;1H_COMPAT_42 -DCOMPAT_43 -DNFS -DISOFS -DINET -DKERNEL -Di386 -DNPX  ../../i386/is[24;1Ha/if_ne.c[72C
+
+
+[2Acc  -c -O -I. -I../.. -I../../sys -DGENERICISA -Di386 -DUCONSOLE -DXSERVER -DTCP[23;1H_COMPAT_42 -DCOMPAT_43 -DNFS -DISOFS -DINET -DKERNEL -Di386 -DNPX  ../../i386/is[24;1Ha/if_we.c[73C
+
+
+[2Acc  -c -O -I. -I../.. -I../../sys -DGENERICISA -Di386 -DUCONSOLE -DXSERVER -DTCP[23;1H_COMPAT_42 -DCOMPAT_43 -DNFS -DISOFS -DINET -DKERNEL -Di386 -DNPX  ../../i386/is[24;1Ha/isa.c  [70C
+
+
+[2Acc  -c -O -I. -I../.. -I../../sys -DGENERICISA -Di386 -DUCONSOLE -DXSERVER -DTCP[23;1H_COMPAT_42 -DCOMPAT_43 -DNFS -DISOFS -DINET -DKERNEL -Di386 -DNPX  ../../i386/is[24;1Ha/lpa.c
+
+
+[2Acc  -c -O -I. -I../.. -I../../sys -DGENERICISA -Di386 -DUCONSOLE -DXSERVER -DTCP[23;1H_COMPAT_42 -DCOMPAT_43 -DNFS -DISOFS -DINET -DKERNEL -Di386 -DNPX  ../../i386/is[24;1Ha/lpt.c[72C
+
+
+[2Acc  -c -O -I. -I../.. -I../../sys -DGENERICISA -Di386 -DUCONSOLE -DXSERVER -DTCP[23;1H_COMPAT_42 -DCOMPAT_43 -DNFS -DISOFS -DINET -DKERNEL -Di386 -DNPX  ../../i386/is[24;1Ha/npx.c
+
+
+[2Acc  -c -O -I. -I../.. -I../../sys -DGENERICISA -Di386 -DUCONSOLE -DXSERVER -DTCP[23;1H_COMPAT_42 -DCOMPAT_43 -DNFS -DISOFS -DINET -DKERNEL -Di386 -DNPX  ../../i386/is[24;1Ha/pccons.c[69C
+
+
+
+
+
+[5Acc  -c -O -I. -I../.. -I../../sys -DGENERICISA -Di386 -DUCONSOLE -DXSERVER -DTCP[20;1H_COMPAT_42 -DCOMPAT_43 -DNFS -DISOFS -DINET -DKERNEL -Di386 -DNPX  ../../i386/is[21;1Ha/spkr.c
+cc  -c -O -I. -I../.. -I../../sys -DGENERICISA -Di386 -DUCONSOLE -DXSERVER -DTCP[23;1H_COMPAT_42 -DCOMPAT_43 -DNFS -DISOFS -DINET -DKERNEL -Di386 -DNPX  ../../i386/is[24;1Ha/wd.c    [69C
+
+
+[2Acc  -c -O -I. -I../.. -I../../sys -DGENERICISA -Di386 -DUCONSOLE -DXSERVER -DTCP[23;1H_COMPAT_42 -DCOMPAT_43 -DNFS -DISOFS -DINET -DKERNEL -Di386 -DNPX  ../../i386/is[24;1Ha/wt.c[73C
+
+
+[2Acc  -c -O -I. -I../.. -I../../sys -DGENERICISA -Di386 -DUCONSOLE -DXSERVER -DTCP[23;1H_COMPAT_42 -DCOMPAT_43 -DNFS -DISOFS -DINET -DKERNEL -Di386 -DNPX  ../../scsi/cd[24;1H.c[77C
+
+
+[2Acc  -c -O -I. -I../.. -I../../sys -DGENERICISA -Di386 -DUCONSOLE -DXSERVER -DTCP[23;1H_COMPAT_42 -DCOMPAT_43 -DNFS -DISOFS -DINET -DKERNEL -Di386 -DNPX  ../../scsi/sc[24;1Hsiconf.c
+
+
+[2Acc  -c -O -I. -I../.. -I../../sys -DGENERICISA -Di386 -DUCONSOLE -DXSERVER -DTCP[23;1H_COMPAT_42 -DCOMPAT_43 -DNFS -DISOFS -DINET -DKERNEL -Di386 -DNPX  ../../scsi/sd[24;1H.c[77C
+
+
+[2Acc  -c -O -I. -I../.. -I../../sys -DGENERICISA -Di386 -DUCONSOLE -DXSERVER -DTCP[23;1H_COMPAT_42 -DCOMPAT_43 -DNFS -DISOFS -DINET -DKERNEL -Di386 -DNPX  ../../scsi/st[24;1H.c[79C
+
+
+[2Acc  -c -O -I. -I../.. -I../../sys -DGENERICISA -Di386 -DUCONSOLE -DXSERVER -DTCP[23;1H_COMPAT_42 -DCOMPAT_43 -DNFS -DISOFS -DINET -DKERNEL -Di386 -DNPX -DTIMEZONE=480[24;2H-DDST=1 -DMAXUSERS=10 param.c[49C
+
+[1Acc  -c -O -I. -I../.. -I../../sys -DGENERICISA -Di386 -DUCONSOLE -DXSERVER -DTCP[24;1H_COMPAT_42 -DCOMPAT_43 -DNFS -DISOFS -DINET -DKERNEL -Di386 -DNPX ioconf.c
+
+
+
+
+[4Acc  -traditional -c -O -I. -I../.. -I../../sys -DGENERICISA -Di386 -DUCONSOLE -D[21;1HXSERVER -DTCP_COMPAT_42 -DCOMPAT_43 -DNFS -DISOFS -DINET -DKERNEL -Di386 -DNPX .[22;1H./../i386/i386/conf.c
+cc  -c -O -I. -I../.. -I../../sys -DGENERICISA -Di386 -DUCONSOLE -DXSERVER -DTCP[24;1H_COMPAT_42 -DCOMPAT_43 -DNFS -DISOFS -DINET -DKERNEL -Di386 -DNPX  swap386bsd.c
+
+
+
+
+[4Ash ../../conf/newvers.sh GENERICISA -DGENERICISA -Di386 -DUCONSOLE -DXSERVER -DT[21;1HCP_COMPAT_42 -DCOMPAT_43 -DNFS -DISOFS -DINET
+cc -O -I. -I../.. -I../../sys -DGENERICISA -Di386 -DUCONSOLE -DXSERVER -DTCP_COM[23;1HPAT_42 -DCOMPAT_43 -DNFS -DISOFS -DINET -DKERNEL -Di386 -DNPX -c vers.c
+loading 386bsd[65C
+
+
+[2Arearranging symbols
+text    data    bss     dec     hex
+421888  16384   146556  584828  8ec7c[42C
+
+
+
+
+
+
+
+
+
+
+
+[11AShutdown NOW!
+shutdown: [pid 9274]
+#
+
+*** FINAL System shutdown message from root@odin ***
+System going down IMMEDIATELY
+
+
+Apr 19 20:38:47 odin shutdown: reboot by root:
+Apr 19 20:38:47 odin shutdown: reboot by root:
+
+System shutdown time has arrived[5C[42C[H[J[24;1H[?1l>
