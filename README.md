@@ -14,7 +14,7 @@ for i in a b c; do \
 done|bunzip2 >qdisk.img
 ```
 
-386BSD with the first patchkit should run in quemu with:
+386BSD with the first patchkit should run in qemu 0.11 with:
 
 ```
 qemu -L /usr/local/share/qemu/ \
