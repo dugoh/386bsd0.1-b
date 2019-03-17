@@ -53,15 +53,66 @@ function push {
 }
 
 wd=$(pwd)
-
+ver_a_loc=https://dugoh.github.io/386bsd0.1/
 
 (
 check checking wget;                   wget --help                                      >/dev/null 2>&1 && ok || nok
 check checking ncurses;                ls -l /usr/include/ncurses.h                     >/dev/null 2>&1 && ok || nok
+check fetching version a;              wget -r -np -nd "${ver_a_loc}"                   >/dev/null 2>&1 && ok || nok
+check extract bochs;                   bunzip2 -c bochs.tar.bz2|tar -xvf -              >/dev/null 2>&1 && ok || nok
+check checking directory;              cd bochs                                         >/dev/null 2>&1 && ok || nok
+check installing bochs;                make install                                     >/dev/null 2>&1 && ok || nok
 check setting capabilities;            sudo setcap                                      \
                                          CAP_NET_ADMIN,CAP_NET_RAW=eip                  \
                                          /usr/local/bin/bochs                           >/dev/null 2>&1 && ok || nok
+cd "${wd}"
+check fetching bochs config;           wget "${ver_a_loc}/"
 check bochs config present;            ls bochsrc                                       >/dev/null 2>&1 && ok || nok
+check set time to 1st patch kit date;  sed -i -e's/time0=.*/time0=735327993/'           >/dev/null 2>&1 && ok || nok
+
+)|format
+
+cat >4 <<"__EOF4__"
+root
+
+exec sh
+cat >/to_pk023.sh <<"__EOF"
+#!/bin/sh
+cd /
+tar -xvf pk023.tar
+mv patch dist
+cd dist/bin
+./mkpatchdirs
+(echo y; echo; echo; echo IALL; echo y ; echo ; echo q)|./patches
+./afterinstall.sh
+rm -r /sys/compile/*
+cd /sys/i386/conf
+config GENERICISA
+cd /sys/compile/GENERICISA
+make depend
+make
+mv /386bsd /386bsd.old
+cp 386bsd /386bsd
+sync; sync; sync
+shutdown -rf now
+__EOF
+chmod +x /to_pk023.sh
+/to_pk023.sh
+"__EOF4__"
+
+# fourth boot #########################
+touch out
+(
+  until grep -q 'login:' out ; do
+    sleep 5;
+  done
+  sleep 5
+  slowcat ./4 4 1
+)| TERM=vt100 bochs -q -f bochsrc |tee -a out 
+######################################
+
+(
+check add 2 hours to clock;           sed -i -e's/time0=.*/time0=735335193/' bochsrc    >/dev/null 2>&1 && ok || nok
 )|format
 
 (
