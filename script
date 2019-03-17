@@ -61,7 +61,7 @@ check checking wget;                   wget --help                              
 check checking ncurses;                ls -l /usr/include/ncurses.h                     >/dev/null 2>&1 && ok || nok
 check fetching version a;              wget -r -np -nd "${ver_a_loc}"                   >/dev/null 2>&1 && ok || nok
 check extract disk;                    cat disk.part-aa disk.part-ab disk.part-ac \
-                                         |bunzip2 >disk.img                             >/dev/null 2>&1 && ok || nok
+                                         |bunzip2 >disk.img                                             && ok || nok
 check extract bochs;                   bunzip2 -c bochs.tar.bz2|tar -xvf -              >/dev/null 2>&1 && ok || nok
 check checking bochs directory;        cd bochs                                         >/dev/null 2>&1 && ok || nok
 check installing bochs;                sudo make install                                >/dev/null 2>&1 && ok || nok
@@ -171,7 +171,7 @@ touch out
                 -startdate "1994-04-21"'  \
  |tee -a out                              \
  |tr -cd 'c'                              \
- |fold
+ |fold -w 120
 mv out out_5.txt
 ###########################################################
 
