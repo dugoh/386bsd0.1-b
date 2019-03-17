@@ -69,7 +69,7 @@ check setting bochs capabilities;      sudo setcap                              
                                          /usr/local/bin/bochs                           >/dev/null 2>&1 && ok || nok
 cd "${wd}"
 check bochs config present;            ls bochsrc                                       >/dev/null 2>&1 && ok || nok
-check set time to 1st patch kit date;  sed -i -e 's/time0=.*/time0=735327993/'          >/dev/null 2>&1 && ok || nok
+check set time to 1st patch kit date;  sed -i -e 's/time0=.*/time0=735327993/' bochsrc  >/dev/null 2>&1 && ok || nok
 check fetching qemu;                   sudo -i wget "${qemu_loc}"                       >/dev/null 2>&1 && ok || nok
 check extract qemu;                    sudo -i -- bash -c \
                                          'bunzip2 -c qemu.tar.bz2 | tar -xvf -'    #     >/dev/null 2>&1 && ok || nok
@@ -79,8 +79,6 @@ check setting qemu capabilities;       sudo setcap                              
                                          /usr/local/bin/qemu                   #         >/dev/null 2>&1 && ok || nok
 cd "${wd}"
 #)|format
-
-sudo -i -- bash -c 'mkdir a; cd a; pwd; pwd'
 
 cat >4 <<"__EOF4__"
 root
