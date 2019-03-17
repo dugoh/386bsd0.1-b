@@ -1,0 +1,80 @@
+function check {
+  echo -ne "$*\t"
+}
+
+function ok {
+  echo -e "[ \e[38;5;32msuccess\e[0m ]"
+}
+
+function nok {
+  echo -e "[ \e[38;5;31mfailure\e[0m ]"
+}
+
+function warn {
+  echo -e "[ \e[38;5;33mwarning\e[0m ]"
+}
+
+function format {
+  awk -F'\t' '{ printf "%-60s %s\n",$1,$2 }'
+}
+
+function slowcat {
+[[ -z "${3}" ]] && echo usage: $0 file chunksize waittime && return 1
+  local c=0
+  local b=$(wc -c <${1})
+    while [ ${c} -lt ${b} ]; do
+    dd if=${1} bs=1 count=${2} skip=${c} 2>/dev/null
+    (( c = c + ${2} ))
+    sleep ${3}
+  done
+}
+
+function index {
+  echo "<HTML><HEAD><TITLE>LINKS</TITLE></HEAD><BODY><ul>" >index.html
+  for file in $(ls|grep -v index.html); do \
+    (\
+      printf '<li><a href="' ; \
+      printf "${file}" ; \
+      printf '">' ; \
+      printf "${file}" ; \
+      printf '</a></li>\n' \
+    ) >>index.html ; \
+  done
+  echo "</ul></BODY></HTML>" >>index.html
+}
+
+function push {
+  git init
+  git config user.name "${USER}"
+  git config user.email "${GHP_MAIL}"
+  git add .
+  git commit -m "Deploy to GitHub Pages"
+  git push --force --quiet https://${GHP_TOKEN}@github.com/${TRAVIS_REPO_SLUG}.git master:gh-pages
+}
+
+wd=$(pwd)
+
+
+(
+check checking wget;                   wget --help                                      >/dev/null 2>&1 && ok || nok
+check checking ncurses;                ls -l /usr/include/ncurses.h                     >/dev/null 2>&1 && ok || nok
+check setting capabilities;            sudo setcap                                      \
+                                         CAP_NET_ADMIN,CAP_NET_RAW=eip                  \
+                                         /usr/local/bin/bochs                           >/dev/null 2>&1 && ok || nok
+check bochs config present;            ls bochsrc                                       >/dev/null 2>&1 && ok || nok
+)|format
+
+(
+check creating gh-pages;              mkdir gh-pages ; cd gh-pages                      >/dev/null 2>&1 && ok || nok
+#check add bochs;                      mv ../bochs/bochs.tar.bz2 ./                      >/dev/null 2>&1 && ok || nok
+#check add the hard disk;              mv ../disk.img ./                                 >/dev/null 2>&1 && ok || nok
+#check compress the disk;              bzip2 --best disk.img                             >/dev/null 2>&1 && ok || nok
+#check split the disk in parts;        split -b 50m "disk.img.bz2" "disk.part-"          >/dev/null 2>&1 && ok || nok
+#check remove the unsplit disk;        rm disk.img.bz2                                   >/dev/null 2>&1 && ok || nok
+#check add the floppy disk;            mv ../boot.img ./                                 >/dev/null 2>&1 && ok || nok
+#check add the bochs config;           mv ../bochsrc ./                                  >/dev/null 2>&1 && ok || nok
+#check add the TUN config;             mv ../tunconfig ./                                >/dev/null 2>&1 && ok || nok
+#check add the screen output;          mv ../out_* ./                                    >/dev/null 2>&1 && ok || nok
+check create an index page;           index                                             >/dev/null 2>&1 && ok || nok
+check push to gh-pages;               push                                              >/dev/null 2>&1 && ok || nok
+)|format
