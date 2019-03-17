@@ -159,7 +159,7 @@ touch out
     sleep 5;
   done
   sleep 5
-  slowcat ./5 1 .3
+  slowcat ./5 1 .5
 )| TERM=vt100 script -f -c 'qemu          \
                 -L /usr/local/share/qemu/ \
                 -curses                   \
@@ -175,9 +175,11 @@ touch out
 mv out out_5.txt
 ###########################################################
 
-echo ====;echo;echo;echo
+echo;echo ====;echo;echo
+fold out_5.txt|head -150
+echo;echo ====;echo;echo
 fold out_5.txt|tail -150
-echo ====;echo;echo;echo
+echo;echo ====;echo;echo
 
 (
 check creating gh-pages;              mkdir gh-pages ; cd gh-pages                      >/dev/null 2>&1 && ok || nok
