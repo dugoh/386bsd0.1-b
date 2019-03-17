@@ -108,7 +108,7 @@ __EOF4__
 # fourth boot #########################
 touch out
 (
-  until grep -q 'login:' out ; do
+  until egrep -q 'login:|console' out ; do
     sleep 5;
   done
   sleep 5
