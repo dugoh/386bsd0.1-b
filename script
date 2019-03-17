@@ -172,7 +172,9 @@ touch out
                 -no-reboot                \
                 -m 64                     \
                 -startdate "1994-04-21"'  \
- |tee -a out 
+ |tee -a out                              \
+ |tr -cd 'c'                              \
+ |fold
 mv out out_5.txt
 ######################################
 date
