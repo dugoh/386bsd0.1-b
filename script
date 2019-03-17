@@ -56,12 +56,12 @@ wd=$(pwd)
 ver_a_loc=https://dugoh.github.io/386bsd0.1/
 qemu_loc=https://dugoh.github.io/oldqemu/qemu.tar.bz2
 
-#(
+(
 check checking wget;                   wget --help                                      >/dev/null 2>&1 && ok || nok
 check checking ncurses;                ls -l /usr/include/ncurses.h                     >/dev/null 2>&1 && ok || nok
-check fetching version a;              wget -r -np -nd "${ver_a_loc}"             #      >/dev/null 2>&1 && ok || nok
+check fetching version a;              wget -r -np -nd "${ver_a_loc}"                   >/dev/null 2>&1 && ok || nok
 check extract disk;                    cat disk.part-aa disk.part-ab disk.part-ac \
-                                         |bunzip2 >disk.img                 #            >/dev/null 2>&1 && ok || nok
+                                         |bunzip2 >disk.img                             >/dev/null 2>&1 && ok || nok
 check extract bochs;                   bunzip2 -c bochs.tar.bz2|tar -xvf -              >/dev/null 2>&1 && ok || nok
 check checking bochs directory;        cd bochs                                         >/dev/null 2>&1 && ok || nok
 check installing bochs;                sudo make install                                >/dev/null 2>&1 && ok || nok
@@ -73,21 +73,20 @@ check bochs config present;            ls bochsrc                               
 check set time to 1st patch kit date;  sed -i -e 's/time0=.*/time0=735327993/' bochsrc  >/dev/null 2>&1 && ok || nok
 check fetching qemu;                   sudo -i wget "${qemu_loc}"                       >/dev/null 2>&1 && ok || nok
 check extract qemu;                    sudo -i -- bash -c \
-                                         'bunzip2 -c qemu.tar.bz2 | tar -xvf -'    #     >/dev/null 2>&1 && ok || nok
-check installing qemu;                 sudo -i -- bash -c 'cd qemu; make install'  #     >/dev/null 2>&1 && ok || nok
+                                         'bunzip2 -c qemu.tar.bz2 | tar -xvf -'         >/dev/null 2>&1 && ok || nok
+check installing qemu;                 sudo -i -- bash -c 'cd qemu; make install'       >/dev/null 2>&1 && ok || nok
 check setting qemu capabilities;       sudo setcap                                      \
                                          CAP_NET_ADMIN,CAP_NET_RAW=eip                  \
-                                         /usr/local/bin/qemu                   #         >/dev/null 2>&1 && ok || nok
-#)|format
+                                         /usr/local/bin/qemu                            >/dev/null 2>&1 && ok || nok
+)|format
 
 cd "${wd}"
-ls -l
 
-# second third boot (fsck due to clock shift) #########
+# second third boot (fsck due to clock shift) #############
 touch out
 (sleep 20; echo)|TERM=vt100 bochs -q -f bochsrc |tee -a out
 mv out out_3b.txt
-######################################
+###########################################################
 
 cat >4 <<"__EOF4__"
 root
@@ -117,7 +116,7 @@ chmod +x /to_pk023.sh
 /to_pk023.sh
 __EOF4__
 
-# fourth boot #########################
+# fourth boot #############################################
 touch out
 (
   until egrep -q 'login:|console' out ; do
@@ -127,7 +126,7 @@ touch out
   slowcat ./4 4 1
 )| TERM=vt100 bochs -q -f bochsrc |tee -a out 
 mv out out_4.txt
-######################################
+###########################################################
 
 (
 check add 2 hours to clock;           sed -i -e's/time0=.*/time0=735335193/' bochsrc    >/dev/null 2>&1 && ok || nok
@@ -148,14 +147,12 @@ chmod +x /buildworld_pk023.sh
 /buildworld_pk023.sh
 __EOF5__
 
-date
-
 (
 check convert disk;                   qemu-img convert \
                                               -f raw -O qcow2 disk.img qdisk.img        >/dev/null 2>&1 && ok || nok
 )|format
 
-# fifth boot #########################
+# fifth boot ##############################################
 touch out
 (
   until egrep -q 'login:|console' out ; do
@@ -176,16 +173,14 @@ touch out
  |tr -cd 'c'                              \
  |fold
 mv out out_5.txt
-######################################
+###########################################################
 
 echo ====;echo;echo;echo
 fold out_5.txt|tail -150
 echo ====;echo;echo;echo
 
-
 (
 check creating gh-pages;              mkdir gh-pages ; cd gh-pages                      >/dev/null 2>&1 && ok || nok
-#check add bochs;                      mv ../bochs/bochs.tar.bz2 ./                      >/dev/null 2>&1 && ok || nok
 check add the hard disk;              mv ../qdisk.img ./                                >/dev/null 2>&1 && ok || nok
 check compress the disk;              bzip2 --best qdisk.img                            >/dev/null 2>&1 && ok || nok
 check split the disk in parts;        split -b 50m "qdisk.img.bz2" "qdisk.part-"        >/dev/null 2>&1 && ok || nok
