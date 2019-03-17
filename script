@@ -59,7 +59,7 @@ qemu_loc=https://dugoh.github.io/oldqemu/qemu.tar.bz2
 #(
 check checking wget;                   wget --help                                      >/dev/null 2>&1 && ok || nok
 check checking ncurses;                ls -l /usr/include/ncurses.h                     >/dev/null 2>&1 && ok || nok
-check fetching version a;              wget -r -np -nd "${ver_a_loc}"                   >/dev/null 2>&1 && ok || nok
+check fetching version a;              wget -r -np -nd "${ver_a_loc}"           #        >/dev/null 2>&1 && ok || nok
 check extract disk;                    cat disk.part*|bunzip2 >disk.img                 >/dev/null 2>&1 && ok || nok
 check extract bochs;                   bunzip2 -c bochs.tar.bz2|tar -xvf -              >/dev/null 2>&1 && ok || nok
 check checking bochs directory;        cd bochs                                         >/dev/null 2>&1 && ok || nok
