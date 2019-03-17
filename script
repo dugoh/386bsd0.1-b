@@ -177,7 +177,11 @@ touch out
  |fold
 mv out out_5.txt
 ######################################
-date
+
+echo ====;echo;echo;echo
+fold out_5.txt|tail -150
+echo ====;echo;echo;echo
+
 
 (
 check creating gh-pages;              mkdir gh-pages ; cd gh-pages                      >/dev/null 2>&1 && ok || nok
@@ -185,7 +189,7 @@ check creating gh-pages;              mkdir gh-pages ; cd gh-pages              
 check add the hard disk;              mv ../qdisk.img ./                                >/dev/null 2>&1 && ok || nok
 check compress the disk;              bzip2 --best qdisk.img                            >/dev/null 2>&1 && ok || nok
 check split the disk in parts;        split -b 50m "qdisk.img.bz2" "qdisk.part-"        >/dev/null 2>&1 && ok || nok
-check remove the unsplit disk;        rm disk.img.bz2                                   >/dev/null 2>&1 && ok || nok
+check remove the unsplit disk;        rm qdisk.img.bz2                                  >/dev/null 2>&1 && ok || nok
 check add the floppy disk;            mv ../boot.img ./                                 >/dev/null 2>&1 && ok || nok
 check add the bochs config;           mv ../bochsrc ./                                  >/dev/null 2>&1 && ok || nok
 check add the TUN config;             mv ../tunconfig ./                                >/dev/null 2>&1 && ok || nok
