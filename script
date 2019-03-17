@@ -63,7 +63,7 @@ pwd
 ls
 check extract bochs;                   bunzip2 -c bochs.tar.bz2|tar -xvf -     #         >/dev/null 2>&1 && ok || nok
 check checking directory;              cd bochs                                #         >/dev/null 2>&1 && ok || nok
-check installing bochs;                make install                            #         >/dev/null 2>&1 && ok || nok
+check installing bochs;                sudo make install                       #         >/dev/null 2>&1 && ok || nok
 check setting capabilities;            sudo setcap                                      \
                                          CAP_NET_ADMIN,CAP_NET_RAW=eip                  \
                                          /usr/local/bin/bochs                  #         >/dev/null 2>&1 && ok || nok
@@ -99,7 +99,7 @@ shutdown -rf now
 __EOF
 chmod +x /to_pk023.sh
 /to_pk023.sh
-"__EOF4__"
+__EOF4__
 
 # fourth boot #########################
 touch out
