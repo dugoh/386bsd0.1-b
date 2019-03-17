@@ -124,6 +124,47 @@ mv out out_4.txt
 check add 2 hours to clock;           sed -i -e's/time0=.*/time0=735335193/' bochsrc    >/dev/null 2>&1 && ok || nok
 )|format
 
+cat >5 <<"__EOF5__"
+root
+
+exec sh
+cat >/buildworld_pk023.sh <<"__EOF"
+#!/bin/sh
+root
+
+exec sh
+cd /patch/bin
+./buildworld.sh
+sync; sync; sync
+shutdown -rf now
+__EOF
+chmod +x /buildworld_pk023.sh
+/buildworld_pk023.sh
+__EOF5__
+
+date
+# fifth boot #########################
+touch out
+(
+  until egrep -q 'login:|console' out ; do
+    sleep 5;
+  done
+  sleep 5
+  slowcat ./5 4 1
+)| TERM=vt100 qemu \
+                -L /usr/local/share/qemu/ \
+                -curses                   \
+                -hda qdisk.img            \
+                -M isapc                  \
+                -net nic                  \
+                -no-reboot                \
+                -m 64                     \
+                -startdate "1994-04-21"   \
+ |tee -a out 
+mv out out_5.txt
+######################################
+date
+
 (
 check creating gh-pages;              mkdir gh-pages ; cd gh-pages                      >/dev/null 2>&1 && ok || nok
 #check add bochs;                      mv ../bochs/bochs.tar.bz2 ./                      >/dev/null 2>&1 && ok || nok
