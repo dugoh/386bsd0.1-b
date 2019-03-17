@@ -154,7 +154,7 @@ __EOF5__
 date
 
 (
-convert disk;                         qemu-img convert \
+check convert disk;                   qemu-img convert \
                                               -f raw -O qcow2 disk.img qdisk.img        >/dev/null 2>&1 && ok || nok
 )|format
 
@@ -165,8 +165,8 @@ touch out
     sleep 5;
   done
   sleep 5
-  slowcat ./5 4 1
-)| TERM=vt100 qemu \
+  slowcat ./5 1 .3
+)| TERM=vt100 script -c 'qemu              \
                 -L /usr/local/share/qemu/ \
                 -curses                   \
                 -hda qdisk.img            \
@@ -174,7 +174,7 @@ touch out
                 -net nic                  \
                 -no-reboot                \
                 -m 64                     \
-                -startdate "1994-04-21"   \
+                -startdate "1994-04-21"'  \
  |tee -a out 
 mv out out_5.txt
 ######################################
@@ -183,9 +183,9 @@ date
 (
 check creating gh-pages;              mkdir gh-pages ; cd gh-pages                      >/dev/null 2>&1 && ok || nok
 #check add bochs;                      mv ../bochs/bochs.tar.bz2 ./                      >/dev/null 2>&1 && ok || nok
-check add the hard disk;              mv ../disk.img ./                                 >/dev/null 2>&1 && ok || nok
-check compress the disk;              bzip2 --best disk.img                             >/dev/null 2>&1 && ok || nok
-check split the disk in parts;        split -b 50m "disk.img.bz2" "disk.part-"          >/dev/null 2>&1 && ok || nok
+check add the hard disk;              mv ../qdisk.img ./                                >/dev/null 2>&1 && ok || nok
+check compress the disk;              bzip2 --best qdisk.img                            >/dev/null 2>&1 && ok || nok
+check split the disk in parts;        split -b 50m "qdisk.img.bz2" "qdisk.part-"        >/dev/null 2>&1 && ok || nok
 check remove the unsplit disk;        rm disk.img.bz2                                   >/dev/null 2>&1 && ok || nok
 check add the floppy disk;            mv ../boot.img ./                                 >/dev/null 2>&1 && ok || nok
 check add the bochs config;           mv ../bochsrc ./                                  >/dev/null 2>&1 && ok || nok
