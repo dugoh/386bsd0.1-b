@@ -77,8 +77,10 @@ check installing qemu;                 sudo -i -- bash -c 'cd qemu; make install
 check setting qemu capabilities;       sudo setcap                                      \
                                          CAP_NET_ADMIN,CAP_NET_RAW=eip                  \
                                          /usr/local/bin/qemu                   #         >/dev/null 2>&1 && ok || nok
-cd "${wd}"
 #)|format
+
+cd "${wd}"
+ls -l
 
 cat >4 <<"__EOF4__"
 root
@@ -143,6 +145,12 @@ chmod +x /buildworld_pk023.sh
 __EOF5__
 
 date
+
+(
+convert disk;                         qemu-img convert \
+                                              -f raw -O qcow2 disk.img qdisk.img        >/dev/null 2>&1 && ok || nok
+)|format
+
 # fifth boot #########################
 touch out
 (
