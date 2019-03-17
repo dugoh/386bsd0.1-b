@@ -83,6 +83,12 @@ check setting qemu capabilities;       sudo setcap                              
 cd "${wd}"
 ls -l
 
+# second third boot (fsck due to clock shift) #########
+touch out
+(sleep 20; echo)|TERM=vt100 bochs -q -f bochsrc |tee -a out
+mv out out_3b.txt
+######################################
+
 cat >4 <<"__EOF4__"
 root
 
