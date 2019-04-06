@@ -27,7 +27,7 @@ qemu -L /usr/local/share/qemu/ \
      -startdate "1994-04-22"'
 ```
 
-The second patchkit is already on the filesystem and you can pick up the guide at [Sixth_boot, patched and recompiled system](http://gunkies.org/wiki/Installing_386BSD_on_BOCHS#Sixth_boot.2C_patched_and_recompiled_system).
+The second patchkit is already on the filesystem and you can pick up the guide at [Sixth_boot, patched and recompiled system](http://gunkies.org/wiki/Installing_386BSD_on_BOCHS#Sixth_boot.2C_patched_and_recompiled_system). The automated version continues at https://github.com/dugoh/386bsd0.1-c
 
 
 # Warning
